@@ -1,0 +1,17 @@
+*.autofetch
+*.sql
+.classpath
+.project
+.settings/
+target/
+logs/
+log/
+/db
+/mydb.db
+
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/

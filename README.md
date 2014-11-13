@@ -1,4 +1,6 @@
-example-java8
-=============
+Examples using Java 8
+=====================
 
-Example use of SAM methods for findEach() findEachWhile() and new Java8 date time types  
+This shows examples of using Java8 date time types and additionally
+shows where Java 8 closures can be used.
+
