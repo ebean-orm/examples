@@ -1,37 +1,57 @@
 package org.example.domain;
 
+import com.avaje.ebean.QueryIterator;
 import org.example.ExampleBaseTestCase;
 import org.junit.Test;
 
-import com.avaje.ebean.QueryIterator;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class LargeQueryWithFindIterateTest extends ExampleBaseTestCase {
+
 
   @Test
   public void testFindIterate() {
 
+    BaseModel.class.getName();
+
     // insert 1000 customers
     int j = 0;
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < 10; i++) {
       Customer customer = new Customer();
-      customer.setName("Hello"+j++);
-      customer.save();      
+      customer.setName("Hello" + j++);
+      customer.save();
     }
-    
-    QueryIterator<Customer> iterate = 
-        Customer.find
-          .query().select("id") //.fetch("contacts", new FetchConfig().lazy(20))
-          .findIterate();
+
+
+    AtomicLong counter = new AtomicLong();
+
+    Customer.find
+            .select("id, name")
+            .where().le("id", 8)
+            .findVisit((Customer cust) -> {
+              long processCount = counter.incrementAndGet();
+              System.out.println("Hello there2 ... " + cust.getId() + " " + cust.getName() + " counter:" + processCount);
+              return true;//processCount < 5;
+            });
+
+    if (true) {
+      return;
+    }
+
+    QueryIterator<Customer> iterate =
+            Customer.find
+                    .query().select("id") //.fetch("contacts", new FetchConfig().lazy(20))
+                    .findIterate();
 
     try {
-      
+
       while (iterate.hasNext()) {
         Customer customer = iterate.next();
         // do something interesting with customer
         //customer.getContacts().size();
-        System.out.println("got name "+customer.getId()+" "+customer.getName());
+        System.out.println("got name " + customer.getId() + " " + customer.getName());
       }
-      
+
     } finally {
       // close the underlying resources held by the QueryIterator
       // those are:  ResultSet and Connection
