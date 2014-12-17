@@ -28,10 +28,20 @@ public class LargeQueryWithFindIterateTest extends ExampleBaseTestCase {
     Customer.find
             .select("id, name")
             .where().le("id", 8)
-            .findVisit((Customer cust) -> {
+            .findEach((Customer customer) -> {
               long processCount = counter.incrementAndGet();
-              System.out.println("Hello there2 ... " + cust.getId() + " " + cust.getName() + " counter:" + processCount);
-              return true;//processCount < 5;
+              System.out.println("Hello there2 ... " + customer.getId() + " " + customer.getName() + " counter:" + processCount);
+            });
+
+
+    counter.set(0);
+
+    Customer.find
+            .select("id, name")
+            .findEachWhile((Customer customer) -> {
+              long processCount = counter.incrementAndGet();
+              System.out.println("Hello there2 ... " + customer.getId() + " " + customer.getName() + " counter:" + processCount);
+              return processCount < 7;
             });
 
     if (true) {
