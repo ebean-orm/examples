@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import org.example.domain.finder.OrderFinder;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 @Table(name = "o_order")
 public class Order extends BaseModel {
 
-  public static final Finder<Long,Order> find = new Finder<>(Long.class, Order.class);
+  public static final OrderFinder find = new OrderFinder();
 
   public enum Status {
     NEW, APPROVED, SHIPPED, COMPLETE

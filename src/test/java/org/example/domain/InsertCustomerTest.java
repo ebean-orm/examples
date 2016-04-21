@@ -1,12 +1,12 @@
 package org.example.domain;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import org.example.ExampleBaseTestCase;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Transaction;
@@ -98,20 +98,17 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
     } finally {
       transaction.end();
     }
-    
   }
-  
   
   @Test
   public void testQuery() {
     
       List<Customer> customers = 
-          Customer.find.
-            where().ilike("name", "rob%")
+          Customer.find.where()
+            .name.ilike("rob%")
             .findList();
     
       assertNotNull(customers);
-    
   }
   
 }

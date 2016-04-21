@@ -1,8 +1,7 @@
 package org.example.domain;
 
-import com.avaje.ebean.Ebean;
 import org.example.ExampleBaseTestCase;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ExamplePartialObjectQueryTest extends ExampleBaseTestCase {
 
@@ -10,21 +9,23 @@ public class ExamplePartialObjectQueryTest extends ExampleBaseTestCase {
   public void test() {
 
     Customer customer =
-       Customer.find.select("name, email")
-            .where().idEq(12)
-            .findUnique();
+       Customer.find
+           .select("name, email")
+           .id.eq(12)
+           .findUnique();
   }
 
   @Test
   public void automaticallyAddJoins() {
 
-    Country country = Ebean.getReference(Country.class, "NZ");
+    Country nz = Country.find.ref("NZ");
+
     Customer customer =
       Customer.find
+        .where()
+        .billingAddress.country.equalTo(nz)
         .select("name")
-        .where().eq("billingAddress.country", country)
         .findUnique();
-
 
   }
 }

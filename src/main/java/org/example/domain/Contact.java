@@ -1,7 +1,11 @@
 package org.example.domain;
 
-import javax.persistence.*;
-import java.util.List;
+import org.example.domain.finder.ContactFinder;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Contact entity bean.
@@ -10,11 +14,8 @@ import java.util.List;
 @Table(name="be_contact")
 public class Contact extends BaseModel {
 
-  /**
-   * Convenience Finder for 'active record' style.
-   */
-  public static final Finder<Long,Contact> find = new Finder<>(Long.class, Contact.class);
-  
+  public static final ContactFinder find = new ContactFinder();
+
   @Column(length=50)
   String firstName;
   

@@ -1,9 +1,6 @@
 package org.example.domain;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import org.example.domain.finder.CustomerFinder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Customer entity bean.
@@ -19,11 +19,8 @@ import javax.persistence.Table;
 @Table(name="be_customer")
 public class Customer extends BaseModel {
 
-  /**
-   * Convenience Finder for 'active record' style.
-   */
-  public static final Finder<Long,Customer> find = new Finder<>(Long.class, Customer.class);
-  
+  public static final CustomerFinder find = new CustomerFinder();
+
   boolean inactive;
   
   @Column(length=100)
