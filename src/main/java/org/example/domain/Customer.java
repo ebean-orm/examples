@@ -22,7 +22,15 @@ public class Customer extends BaseModel {
   public static final CustomerFinder find = new CustomerFinder();
 
   boolean inactive;
-  
+
+  String fooi;
+  String fooj;
+  String fook;
+  String fool;
+  String bari;
+  String barj;
+  String barm;
+
   @Column(length=100)
   String name;
 

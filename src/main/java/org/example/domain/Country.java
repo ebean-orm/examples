@@ -1,19 +1,19 @@
 package org.example.domain;
 
+import com.avaje.ebean.annotation.Cache;
+import com.avaje.ebean.annotation.CacheBeanTuning;
 import org.example.domain.finder.CountryFinder;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import com.avaje.ebean.annotation.CacheStrategy;
-import com.avaje.ebean.annotation.CacheTuning;
-
 /**
  * Country entity bean.
  */
-@CacheStrategy
-@CacheTuning(maxSize=500)
+@Cache
+@CacheBeanTuning(maxSize=500)
 @Entity
 @Table(name="o_country")
 public class Country {

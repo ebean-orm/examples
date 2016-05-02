@@ -34,4 +34,6 @@
 	<logger name="org.avaje.ebean.TXN" level="TRACE" />
 	<logger name="org.avaje.ebean.SUM" level="TRACE" />
 
+	<logger name="com.avaje.ebean.dbmigration.DdlRunner" level="DEBUG"/>
+
 </configuration>
