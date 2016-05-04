@@ -23,13 +23,11 @@ public class Customer extends BaseModel {
 
   boolean inactive;
 
-  String fooi;
-  String fooj;
-  String fook;
-  String fool;
-  String bari;
-  String barj;
-  String barm;
+  //String fooi;
+  //String fooj;
+  //String bari;
+  //String barj;
+  //String bazi;
 
   @Column(length=100)
   String name;
