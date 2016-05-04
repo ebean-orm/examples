@@ -13,8 +13,7 @@ public class LargeQueryWithFindIterateTest extends ExampleBaseTestCase {
     // insert 1000 customers
     int j = 0;
     for (int i = 0; i < 10; i++) {
-      Customer customer = new Customer();
-      customer.setName("Hello" + j++);
+      Customer customer = new Customer("Hello" + j++);
       customer.save();
     }
 

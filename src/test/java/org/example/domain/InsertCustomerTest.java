@@ -1,15 +1,15 @@
 package org.example.domain;
 
-import static org.testng.Assert.*;
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Transaction;
+import org.example.ExampleBaseTestCase;
+import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import org.example.ExampleBaseTestCase;
-import org.testng.annotations.Test;
-
-import com.avaje.ebean.Ebean;
-import com.avaje.ebean.Transaction;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class InsertCustomerTest extends ExampleBaseTestCase {
 
@@ -17,8 +17,7 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
   @Test
   public void test() {
     
-    Customer customer = new Customer();
-    customer.setName("Rob");
+    Customer customer = new Customer("Rob");
     customer.setRegistered( LocalDate.of(2014, 4, 1));
     
     // insert the customer
@@ -32,10 +31,8 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
     assertEquals("Rob", fetched.getName());
     assertEquals("Rob", fetched2.getName());
     assertEquals(customer.getRegistered(), fetched2.getRegistered());
-
   }
-  
-  
+
   /**
    * Test showing an explicit transaction.
    */
@@ -46,12 +43,10 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
     Transaction transaction = Customer.db().beginTransaction();
     try {
    
-      Customer customer = new Customer();
-      customer.setName("Roberto");      
+      Customer customer = new Customer("Roberto");
       customer.save();
-   
-      Customer otherCustomer = new Customer();
-      otherCustomer.setName("Franko");      
+
+      Customer otherCustomer = new Customer("Franko");
       otherCustomer.save();
       
       transaction.commit();
@@ -61,7 +56,7 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
       // fails in the try block
       transaction.end();
     }
-    
+
   }
   
   
@@ -83,14 +78,12 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
       transaction.setBatchMode(true);
       transaction.setBatchSize(20);
       
-      Customer customer = new Customer();
-      customer.setName("Roberto");      
+      Customer customer = new Customer("Roberto");
       customer.save();
 
       transaction.setBatchFlushOnQuery(false);
       
-      Customer otherCustomer = new Customer();
-      otherCustomer.setName("Franko");      
+      Customer otherCustomer = new Customer("Franko");
       otherCustomer.save();
       
       transaction.commit();

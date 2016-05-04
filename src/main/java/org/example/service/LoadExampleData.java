@@ -165,8 +165,7 @@ public class LoadExampleData {
 
   private Customer insertCustomerNoContacts(String name) {
 
-    Customer c = createCustomer("Roger", "15 Kumera Way", "Bos town", 1);
-    c.setName(name);
+    Customer c = createCustomer(name, "15 Kumera Way", "Bos town", 1);
 
     Ebean.save(c);
     return c;
@@ -174,8 +173,7 @@ public class LoadExampleData {
 
   private Customer insertCustomerNoAddress() {
 
-    Customer c = new Customer();
-    c.setName("Cust NoAddress");
+    Customer c = new Customer("Cust NoAddress");
     c.addContact(createContact("Jack", "Black"));
 
     Ebean.save(c);
@@ -190,8 +188,7 @@ public class LoadExampleData {
 
   public static Customer createCustomer(String name, String shippingStreet, String billingStreet, int contactSuffix) {
 
-    Customer c = new Customer();
-    c.setName(name);
+    Customer c = new Customer(name);
     if (contactSuffix > 0) {
       c.addContact(new Contact("Jim" + contactSuffix, "Cricket"));
       c.addContact(new Contact("Fred" + contactSuffix, "Blue"));

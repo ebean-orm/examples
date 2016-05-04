@@ -14,6 +14,10 @@ import java.util.List;
 
 /**
  * Customer entity bean.
+ *
+ * This example shows an entity bean without a default constructor. The name property is
+ * expected to be final and non-null. Note the InsertCustomerTest.testRef() test showing
+ * loading the partially loaded bean.
  */
 @Entity
 @Table(name="be_customer")
@@ -23,14 +27,8 @@ public class Customer extends BaseModel {
 
   boolean inactive;
 
-  //String fooi;
-  //String fooj;
-  //String bari;
-  //String barj;
-  //String bazi;
-
   @Column(length=100)
-  String name;
+  final String name;
 
   LocalDate registered;
   
@@ -46,6 +44,10 @@ public class Customer extends BaseModel {
   @OneToMany(mappedBy="customer", cascade=CascadeType.PERSIST)
   List<Contact> contacts;
 
+  public Customer(String name) {
+    this.name = name;
+  }
+
   public boolean isInactive() {
     return inactive;
   }
@@ -56,10 +58,6 @@ public class Customer extends BaseModel {
 
   public String getName() {
     return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public LocalDate getRegistered() {
