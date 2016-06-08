@@ -1,16 +1,20 @@
 package org.example.domain;
 
+import com.avaje.ebean.annotation.DbArray;
+import com.avaje.ebean.annotation.DbComment;
 import org.example.domain.finder.CustomerFinder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Customer entity bean.
@@ -19,6 +23,7 @@ import java.util.List;
  * expected to be final and non-null. Note the InsertCustomerTest.testRef() test showing
  * loading the partially loaded bean.
  */
+@DbComment("Customer table general comment")
 @Entity
 @Table(name="be_customer")
 public class Customer extends BaseModel {
@@ -28,11 +33,15 @@ public class Customer extends BaseModel {
   boolean inactive;
 
   @Column(length=100)
-  final String name;
+  String name;
 
+  @DbComment("The date the customer first registered")
   LocalDate registered;
-  
-  @Column(length=1000)
+
+  @DbArray // Postgres ARRAY
+  List<UUID> uids = new ArrayList<>();
+
+  @Lob
   String comments;
   
   @ManyToOne(cascade=CascadeType.ALL)

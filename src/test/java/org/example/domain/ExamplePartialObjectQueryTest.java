@@ -3,6 +3,8 @@ package org.example.domain;
 import org.example.ExampleBaseTestCase;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ExamplePartialObjectQueryTest extends ExampleBaseTestCase {
 
   @Test
@@ -20,12 +22,12 @@ public class ExamplePartialObjectQueryTest extends ExampleBaseTestCase {
 
     Country nz = Country.find.ref("NZ");
 
-    Customer customer =
+    List<Customer> customers =
       Customer.find
         .where()
         .billingAddress.country.equalTo(nz)
         .select("name")
-        .findUnique();
+        .findList();
 
   }
 }

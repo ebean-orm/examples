@@ -42,69 +42,55 @@ public class LoadExampleData {
   }
 
   public void deleteAll() {
-    Ebean.execute(new TxRunnable() {
-      public void run() {
+    Ebean.execute(() -> {
 
-        // Ebean.currentTransaction().setBatchMode(false);
+      // Ebean.currentTransaction().setBatchMode(false);
 
-        // orm update use bean name and bean properties
-        // server.createUpdate(OrderShipment.class, "delete from orderShipment").execute();
+      // orm update use bean name and bean properties
+      // server.createUpdate(OrderShipment.class, "delete from orderShipment").execute();
 
-        server.createUpdate(OrderDetail.class, "delete from orderDetail").execute();
-        server.createUpdate(Order.class, "delete from order").execute();
-        server.createUpdate(Contact.class, "delete from contact").execute();
-        server.createUpdate(Customer.class, "delete from Customer").execute();
-        server.createUpdate(Address.class, "delete from address").execute();
+      server.createUpdate(OrderDetail.class, "delete from orderDetail").execute();
+      server.createUpdate(Order.class, "delete from order").execute();
+      server.createUpdate(Contact.class, "delete from contact").execute();
+      server.createUpdate(Customer.class, "delete from Customer").execute();
+      server.createUpdate(Address.class, "delete from address").execute();
 
-        // sql update uses table and column names
-        server.createSqlUpdate("delete from o_country").execute();
-        server.createSqlUpdate("delete from o_product").execute();
-
-      }
+      // sql update uses table and column names
+      server.createSqlUpdate("delete from o_country").execute();
+      server.createSqlUpdate("delete from o_product").execute();
     });
   }
 
   public void insertCountries() {
 
-    server.execute(new TxRunnable() {
-      public void run() {
-        Country c = new Country();
-        c.setCode("NZ");
-        c.setName("New Zealand");
-        server.save(c);
-
-        Country au = new Country();
-        au.setCode("AU");
-        au.setName("Australia");
-        server.save(au);
-      }
+    server.execute(() ->  {
+      new Country("NZ", "New Zealand").save();
+      new Country("AU", "Australia").save();
     });
   }
 
   public void insertProducts() {
 
-    server.execute(new TxRunnable() {
-      public void run() {
-        Product p = new Product();
-        p.setName("Chair");
-        p.setSku("C001");
-        server.save(p);
+    server.execute(() -> {
+      Product p = new Product();
+      p.setName("Chair");
+      p.setSku("C001");
+      server.save(p);
 
-        p = new Product();
-        p.setName("Desk");
-        p.setSku("DSK1");
-        server.save(p);
+      p = new Product();
+      p.setName("Desk");
+      p.setSku("DSK1");
+      server.save(p);
 
-        p = new Product();
-        p.setName("Computer");
-        p.setSku("C002");
-        server.save(p);
+      p = new Product();
+      p.setName("Computer");
+      p.setSku("C002");
+      server.save(p);
 
-        p = new Product();
-        p.setName("Printer");
-        p.setSku("C003");
-        server.save(p);
-      }
+      p = new Product();
+      p.setName("Printer");
+      p.setSku("C003");
+      server.save(p);
     });
   }
 
@@ -200,7 +186,7 @@ public class LoadExampleData {
       shippingAddr.setLine1(shippingStreet);
       shippingAddr.setLine2("Sandringham");
       shippingAddr.setCity("Auckland");
-      shippingAddr.setCountry(Ebean.getReference(Country.class, "NZ"));
+      shippingAddr.setCountry(Country.find.ref("NZ"));
 
       c.setShippingAddress(shippingAddr);
     }

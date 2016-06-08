@@ -16,7 +16,7 @@ public class Contact extends BaseModel {
 
   public static final ContactFinder find = new ContactFinder();
 
-  @Column(length=50)
+  @Column(length=50, nullable = false)
   String firstName;
   
   @Column(length=50)

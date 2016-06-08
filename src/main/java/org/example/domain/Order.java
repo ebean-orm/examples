@@ -1,7 +1,14 @@
 package org.example.domain;
 
+import com.avaje.ebean.annotation.EnumValue;
 import org.example.domain.finder.OrderFinder;
-import javax.persistence.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +23,16 @@ public class Order extends BaseModel {
   public static final OrderFinder find = new OrderFinder();
 
   public enum Status {
-    NEW, APPROVED, SHIPPED, COMPLETE
+    @EnumValue("N")
+    NEW,
+    @EnumValue("A")
+    APPROVED,
+    @EnumValue("S")
+    SHIPPED,
+    @EnumValue("C")
+    COMPLETE,
+    @EnumValue("F")
+    FOO
   }
 
   Status status;

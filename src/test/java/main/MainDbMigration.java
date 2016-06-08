@@ -21,7 +21,7 @@ public class MainDbMigration {
 
     // optionally specify the version and name
     //System.setProperty("ddl.migration.version", "1.1");
-    System.setProperty("ddl.migration.name", "add bars");
+    //System.setProperty("ddl.migration.name", "add bars");
 
     // generate a migration using drops from a prior version
     //System.setProperty("ddl.migration.pendingDropsFor", "1.2");
