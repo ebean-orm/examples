@@ -38,7 +38,4 @@ public class CustomerFinder extends Finder<Long,Customer> {
     return where().select(properties);
   }
 
-  public UpdateQuery<QCustomer> update() {
-    return new UpdateQuery<>(where());
-  }
 }

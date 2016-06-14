@@ -41,7 +41,6 @@ public class Customer extends BaseModel {
   @DbArray // Postgres ARRAY
   List<UUID> uids = new ArrayList<>();
 
-  @Lob
   String comments;
   
   @ManyToOne(cascade=CascadeType.ALL)

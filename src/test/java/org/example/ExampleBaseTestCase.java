@@ -1,8 +1,8 @@
 package org.example;
 
-import org.avaje.agentloader.AgentLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.avaje.agentloader.AgentLoader;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 
 /**
@@ -16,12 +16,12 @@ import org.slf4j.LoggerFactory;
  */
 public class ExampleBaseTestCase {
 
-  protected static Logger logger = LoggerFactory.getLogger(ExampleBaseTestCase.class);
-  
-  static {
-    logger.debug("... preStart");
-    if (!AgentLoader.loadAgentFromClasspath("avaje-ebeanorm-agent","debug=1;packages=org.example.**")) {
-      logger.info("avaje-ebeanorm-agent not found in classpath - not dynamically loaded");
-    }    
-  }
+//  protected static Logger logger = LoggerFactory.getLogger(ExampleBaseTestCase.class);
+//
+//  static {
+//    logger.debug("... preStart");
+//    if (!AgentLoader.loadAgentFromClasspath("avaje-ebeanorm-agent","debug=1;packages=org.example.**")) {
+//      logger.info("avaje-ebeanorm-agent not found in classpath - not dynamically loaded");
+//    }
+//  }
 }

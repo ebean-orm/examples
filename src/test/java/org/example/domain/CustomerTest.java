@@ -3,8 +3,6 @@ package org.example.domain;
 import com.avaje.ebean.BeanState;
 import com.avaje.ebean.Ebean;
 import org.example.ExampleBaseTestCase;
-import org.example.domain.finder.UpdateQuery;
-import org.example.domain.query.QCustomer;
 import org.testng.annotations.Test;
 
 import java.util.Set;
@@ -15,14 +13,6 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 public class CustomerTest extends ExampleBaseTestCase {
 
   private Customer jack = new Customer("Jack");
-
-  public void update() {
-    UpdateQuery<QCustomer> update = Customer.find.update();
-    update.set("name", "foo")
-      .where()
-      .name.contains("foo")
-      .delete();
-  }
 
   /**
    * Even though customer name is final Ebean can build a reference

@@ -10,6 +10,7 @@
 
   <properties>
     <java.version>1.8</java.version>
+    <ebeanorm-enhancement.plugin.args>debug=1</ebeanorm-enhancement.plugin.args>
   </properties>
 
   <dependencies>
@@ -71,17 +72,17 @@
     </dependency>
 
     <!-- optional: programmatic java agent loading -->
-    <dependency>
-      <groupId>org.avaje</groupId>
-      <artifactId>avaje-agentloader</artifactId>
-      <version>1.1.1</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.avaje</groupId>-->
+      <!--<artifactId>avaje-agentloader</artifactId>-->
+      <!--<version>1.1.1</version>-->
+    <!--</dependency>-->
 
-    <dependency>
-      <groupId>org.avaje.ebeanorm</groupId>
-      <artifactId>avaje-ebeanorm-agent</artifactId>
-      <version>4.9.2</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.avaje.ebeanorm</groupId>-->
+      <!--<artifactId>avaje-ebeanorm-agent</artifactId>-->
+      <!--<version>4.11.1</version>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>org.avaje.composite</groupId>
@@ -104,7 +105,7 @@
         <configuration>
           <tiles>
             <tile>org.avaje.tile:java-compile:1.1</tile>
-            <tile>org.avaje.tile:ebean-enhancement:1.2</tile>
+            <tile>org.avaje.tile:ebean-enhancement:1.4</tile>
           </tiles>
         </configuration>
       </plugin>

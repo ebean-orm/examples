@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
  */
 @Cache
 @Entity
-@Table(name = "o_country", schema = "gen")
+@Table(name = "o_country")
 public class Country extends Model {
 
   public static final CountryFinder find = new CountryFinder();
