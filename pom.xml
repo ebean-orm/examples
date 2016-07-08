@@ -31,21 +31,21 @@
     <dependency>
       <groupId>org.avaje.ebeanorm</groupId>
       <artifactId>avaje-ebeanorm</artifactId>
-      <version>7.13.1</version>
+      <version>7.16.2</version>
     </dependency>
 
     <!-- support for query beans -->
     <dependency>
       <groupId>org.avaje.ebeanorm</groupId>
       <artifactId>avaje-ebeanorm-querybean</artifactId>
-      <version>7.13.1</version>
+      <version>7.15.1</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
     <dependency>
       <groupId>org.avaje.ebeanorm</groupId>
       <artifactId>querybean-generator</artifactId>
-      <version>2.2.1</version>
+      <version>2.3.1</version>
       <scope>provided</scope>
     </dependency>
 
@@ -70,19 +70,6 @@
       <artifactId>logback-classic</artifactId>
       <version>1.1.6</version>
     </dependency>
-
-    <!-- optional: programmatic java agent loading -->
-    <!--<dependency>-->
-      <!--<groupId>org.avaje</groupId>-->
-      <!--<artifactId>avaje-agentloader</artifactId>-->
-      <!--<version>1.1.1</version>-->
-    <!--</dependency>-->
-
-    <!--<dependency>-->
-      <!--<groupId>org.avaje.ebeanorm</groupId>-->
-      <!--<artifactId>avaje-ebeanorm-agent</artifactId>-->
-      <!--<version>4.11.1</version>-->
-    <!--</dependency>-->
 
     <dependency>
       <groupId>org.avaje.composite</groupId>
@@ -109,12 +96,6 @@
           </tiles>
         </configuration>
       </plugin>
-
-      <!--<plugin>-->
-        <!--<groupId>org.flywaydb</groupId>-->
-        <!--<artifactId>flyway-maven-plugin</artifactId>-->
-        <!--<version>4.0</version>-->
-      <!--</plugin>-->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
