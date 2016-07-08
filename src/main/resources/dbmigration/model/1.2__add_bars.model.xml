@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
-    <changeSet type="apply">
-        <addColumn tableName="be_customer">
-            <column name="bari" type="varchar(255)"/>
-            <column name="barj" type="varchar(255)"/>
-        </addColumn>
-    </changeSet>
-</migration>
