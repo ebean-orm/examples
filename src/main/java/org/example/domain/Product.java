@@ -19,6 +19,13 @@ public class Product extends BaseModel {
 
   String name;
 
+  public Product() {
+  }
+
+  public Product(Long id) {
+    this.id = id;
+  }
+
   /**
    * Return sku.
    */

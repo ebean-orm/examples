@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,19 +37,28 @@ public class Order extends BaseModel {
 
   Status status;
 
-  Date orderDate;
+  LocalDate orderDate;
 
-  Date shipDate;
+  LocalDate shipDate;
 
   @ManyToOne(optional = false)
   Customer customer;
 
   @ManyToOne
   Address shippingAddress;
-  
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+
   @OrderBy("id asc")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
   List<OrderDetail> details = new ArrayList<>();
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+  List<OrderShipment> shipments = new ArrayList<>();
+
+  public Order(Customer customer) {
+    this.status = Status.NEW;
+    this.customer = customer;
+    this.orderDate = LocalDate.now();
+  }
 
   public String toString() {
     return id + " status:" + status + " customer:" + customer;
@@ -58,28 +67,28 @@ public class Order extends BaseModel {
   /**
    * Return order date.
    */
-  public Date getOrderDate() {
+  public LocalDate getOrderDate() {
     return orderDate;
   }
 
   /**
    * Set order date.
    */
-  public void setOrderDate(Date orderDate) {
+  public void setOrderDate(LocalDate orderDate) {
     this.orderDate = orderDate;
   }
 
   /**
    * Return ship date.
    */
-  public Date getShipDate() {
+  public LocalDate getShipDate() {
     return shipDate;
   }
 
   /**
    * Set ship date.
    */
-  public void setShipDate(Date shipDate) {
+  public void setShipDate(LocalDate shipDate) {
     this.shipDate = shipDate;
   }
 
@@ -117,6 +126,14 @@ public class Order extends BaseModel {
   public void setCustomerWithShipping(Customer customer) {
     this.customer = customer;
     this.shippingAddress = customer.getShippingAddress();
+  }
+
+  public List<OrderShipment> getShipments() {
+    return shipments;
+  }
+
+  public void setShipments(List<OrderShipment> shipments) {
+    this.shipments = shipments;
   }
 
   /**
