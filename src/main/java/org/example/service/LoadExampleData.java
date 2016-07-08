@@ -1,8 +1,7 @@
 package org.example.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.EbeanServer;
 import org.example.domain.Address;
 import org.example.domain.Contact;
 import org.example.domain.Country;
@@ -12,9 +11,9 @@ import org.example.domain.Order.Status;
 import org.example.domain.OrderDetail;
 import org.example.domain.Product;
 
-import com.avaje.ebean.Ebean;
-import com.avaje.ebean.EbeanServer;
-import com.avaje.ebean.TxRunnable;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoadExampleData {
 
@@ -30,13 +29,14 @@ public class LoadExampleData {
 
     final LoadExampleData me = new LoadExampleData();
 
-    server.execute(new TxRunnable() {
-      public void run() {
-        me.deleteAll();
-        me.insertCountries();
-        me.insertProducts();
-        me.insertTestCustAndOrders();
+    server.execute(() -> {
+      if (Country.find.query().findRowCount() > 0) {
+        return;
       }
+      me.deleteAll();
+      me.insertCountries();
+      me.insertProducts();
+      me.insertTestCustAndOrders();
     });
     runOnce = true;
   }
@@ -159,8 +159,10 @@ public class LoadExampleData {
 
   private Customer insertCustomerNoAddress() {
 
-    Customer c = new Customer("Cust NoAddress");
+    Customer c = new Customer("Jack Hill");
     c.addContact(createContact("Jack", "Black"));
+    c.addContact(createContact("Jill", "Hill"));
+    c.addContact(createContact("Mac", "Hill"));
 
     Ebean.save(c);
     return c;
@@ -172,7 +174,7 @@ public class LoadExampleData {
     return c;
   }
 
-  public static Customer createCustomer(String name, String shippingStreet, String billingStreet, int contactSuffix) {
+  private static Customer createCustomer(String name, String shippingStreet, String billingStreet, int contactSuffix) {
 
     Customer c = new Customer(name);
     if (contactSuffix > 0) {
@@ -206,14 +208,13 @@ public class LoadExampleData {
 
   private Order createOrder1(Customer customer) {
 
-    Product product1 = Ebean.getReference(Product.class, 1);
-    Product product2 = Ebean.getReference(Product.class, 2);
-    Product product3 = Ebean.getReference(Product.class, 3);
+    Product product1 = new Product(1L);
+    Product product2 = new Product(2L);
+    Product product3 = new Product(3L);
 
-    Order order = new Order();
-    order.setCustomer(customer);
+    Order order = new Order(customer);
 
-    List<OrderDetail> details = new ArrayList<OrderDetail>();
+    List<OrderDetail> details = new ArrayList<>();
     details.add(new OrderDetail(product1, 5, 10.50));
     details.add(new OrderDetail(product2, 3, 1.10));
     details.add(new OrderDetail(product3, 1, 2.00));
@@ -229,11 +230,11 @@ public class LoadExampleData {
 
     Product product1 = Ebean.getReference(Product.class, 1);
 
-    Order order = new Order();
+    Order order = new Order(customer);
     order.setStatus(Status.SHIPPED);
-    order.setCustomer(customer);
+    order.setShipDate(LocalDate.now().plusDays(1));
 
-    List<OrderDetail> details = new ArrayList<OrderDetail>();
+    List<OrderDetail> details = new ArrayList<>();
     details.add(new OrderDetail(product1, 4, 10.50));
     order.setDetails(details);
 
@@ -244,14 +245,14 @@ public class LoadExampleData {
 
   private void createOrder3(Customer customer) {
 
-    Product product1 = Ebean.getReference(Product.class, 1);
-    Product product3 = Ebean.getReference(Product.class, 3);
+    Product product1 = Product.find.ref(1L);
+    Product product3 = Product.find.ref(3L);
 
-    Order order = new Order();
+    Order order = new Order(customer);
     order.setStatus(Status.COMPLETE);
-    order.setCustomer(customer);
+    order.setShipDate(LocalDate.now().plusDays(2));
 
-    List<OrderDetail> details = new ArrayList<OrderDetail>();
+    List<OrderDetail> details = new ArrayList<>();
     details.add(new OrderDetail(product1, 3, 10.50));
     details.add(new OrderDetail(product3, 40, 2.10));
     order.setDetails(details);
@@ -263,11 +264,7 @@ public class LoadExampleData {
 
   private void createOrder4(Customer customer) {
 
-    Order order = new Order();
-    order.setCustomer(customer);
-
-    //order.addShipment(new OrderShipment());
-
+    Order order = new Order(customer);
     Ebean.save(order);
   }
 }
