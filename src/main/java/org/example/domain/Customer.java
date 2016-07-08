@@ -7,7 +7,6 @@ import org.example.domain.finder.CustomerFinder;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -56,6 +55,10 @@ public class Customer extends BaseModel {
     this.name = name;
   }
 
+  public String toString() {
+    return "id:" + id + " name:" + name;
+  }
+
   public boolean isInactive() {
     return inactive;
   }
@@ -66,6 +69,10 @@ public class Customer extends BaseModel {
 
   public String getName() {
     return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public LocalDate getRegistered() {
