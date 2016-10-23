@@ -1,6 +1,6 @@
 package main;
 
-import com.avaje.ebean.config.dbplatform.DbPlatformName;
+import com.avaje.ebean.config.Platform;
 import com.avaje.ebean.dbmigration.DbMigration;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class MainDbMigration {
     //System.setProperty("ddl.migration.pendingDropsFor", "1.2");
 
     DbMigration dbMigration = new DbMigration();
-    dbMigration.setPlatform(DbPlatformName.POSTGRES);
+    dbMigration.setPlatform(Platform.MYSQL);
     // generate the migration ddl and xml
     // ... with EbeanServer in "offline" mode
     dbMigration.generateMigration();

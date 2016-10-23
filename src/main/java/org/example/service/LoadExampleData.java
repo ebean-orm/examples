@@ -30,7 +30,7 @@ public class LoadExampleData {
     final LoadExampleData me = new LoadExampleData();
 
     server.execute(() -> {
-      if (Country.find.query().findRowCount() > 0) {
+      if (Country.find.query().findCount() > 0) {
         return;
       }
       me.deleteAll();

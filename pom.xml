@@ -15,37 +15,37 @@
 
   <dependencies>
 
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>9.4-1202-jdbc41</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.postgresql</groupId>-->
+      <!--<artifactId>postgresql</artifactId>-->
+      <!--<version>9.4-1202-jdbc41</version>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.39</version>
-      <scope>test</scope>
+      <!--<scope>test</scope>-->
     </dependency>
 
     <dependency>
-      <groupId>org.avaje.ebeanorm</groupId>
-      <artifactId>avaje-ebeanorm</artifactId>
-      <version>7.16.2</version>
+      <groupId>org.avaje.ebean</groupId>
+      <artifactId>ebean</artifactId>
+      <version>8.4.1</version>
     </dependency>
 
     <!-- support for query beans -->
     <dependency>
-      <groupId>org.avaje.ebeanorm</groupId>
-      <artifactId>avaje-ebeanorm-querybean</artifactId>
-      <version>7.15.1</version>
+      <groupId>org.avaje.ebean</groupId>
+      <artifactId>ebean-querybean</artifactId>
+      <version>8.4.1</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
     <dependency>
-      <groupId>org.avaje.ebeanorm</groupId>
+      <groupId>org.avaje.ebean</groupId>
       <artifactId>querybean-generator</artifactId>
-      <version>2.3.1</version>
+      <version>8.1.4</version>
       <scope>provided</scope>
     </dependency>
 
@@ -74,8 +74,7 @@
     <dependency>
       <groupId>org.avaje.composite</groupId>
       <artifactId>composite-testing</artifactId>
-      <version>2.1</version>
-      <type>pom</type>
+      <version>3.1</version>
       <scope>test</scope>
     </dependency>
 

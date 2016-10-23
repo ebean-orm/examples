@@ -28,10 +28,10 @@
         </createTable>
         <createTable name="be_customer" pkName="pk_be_customer" comment="Customer table general comment">
             <column name="id" type="bigint" primaryKey="true"/>
-            <column name="inactive" type="boolean"/>
+            <column name="inactive" type="bit"/>
             <column name="name" type="varchar(100)"/>
             <column name="registered" type="date" comment="The date the customer first registered"/>
-            <column name="uids" type="uuid[]"/>
+            <column name="uids" type="varchar(1000)"/>
             <column name="comments" type="varchar(255)"/>
             <column name="billing_address_id" type="bigint" references="o_address.id" foreignKeyName="fk_be_customer_billing_address_id" foreignKeyIndex="ix_be_customer_billing_address_id"/>
             <column name="shipping_address_id" type="bigint" references="o_address.id" foreignKeyName="fk_be_customer_shipping_address_id" foreignKeyIndex="ix_be_customer_shipping_address_id"/>
@@ -57,6 +57,15 @@
             <column name="ship_qty" type="integer"/>
             <column name="unit_price" type="double"/>
             <column name="product_id" type="bigint" references="o_product.id" foreignKeyName="fk_o_order_detail_product_id" foreignKeyIndex="ix_o_order_detail_product_id"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_updated" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="o_order_shipment" pkName="pk_o_order_shipment">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="order_id" type="bigint" notnull="true" references="o_order.id" foreignKeyName="fk_o_order_shipment_order_id" foreignKeyIndex="ix_o_order_shipment_order_id"/>
+            <column name="shipped_on" type="date"/>
+            <column name="notes" type="varchar(255)"/>
             <column name="version" type="bigint" notnull="true"/>
             <column name="when_created" type="timestamp" notnull="true"/>
             <column name="when_updated" type="timestamp" notnull="true"/>
