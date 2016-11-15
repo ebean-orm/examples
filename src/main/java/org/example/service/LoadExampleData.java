@@ -14,6 +14,7 @@ import org.example.domain.Product;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class LoadExampleData {
 
@@ -208,9 +209,9 @@ public class LoadExampleData {
 
   private Order createOrder1(Customer customer) {
 
-    Product product1 = new Product(1L);
-    Product product2 = new Product(2L);
-    Product product3 = new Product(3L);
+    Product product1 = new Product(UUID.randomUUID());
+    Product product2 = new Product(UUID.randomUUID());
+    Product product3 = new Product(UUID.randomUUID());
 
     Order order = new Order(customer);
 

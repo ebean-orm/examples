@@ -2,17 +2,22 @@ package org.example.domain;
 
 import org.example.domain.finder.ProductFinder;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 /**
  * Product entity bean.
  */
 @Entity
 @Table(name = "o_product")
-public class Product extends BaseModel {
+public class Product {
 
   public static final ProductFinder find = new ProductFinder();
+
+  @Id
+  UUID id;
 
   @Size(max = 20)
   String sku;
@@ -22,7 +27,15 @@ public class Product extends BaseModel {
   public Product() {
   }
 
-  public Product(Long id) {
+  public Product(UUID id) {
+    this.id = id;
+  }
+
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
     this.id = id;
   }
 

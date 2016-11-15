@@ -27,7 +27,7 @@ public class MainDbMigration {
     //System.setProperty("ddl.migration.pendingDropsFor", "1.2");
 
     DbMigration dbMigration = new DbMigration();
-    dbMigration.setPlatform(Platform.MYSQL);
+    dbMigration.setPlatform(Platform.POSTGRES);
     // generate the migration ddl and xml
     // ... with EbeanServer in "offline" mode
     dbMigration.generateMigration();
