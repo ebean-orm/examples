@@ -24,8 +24,8 @@
 		<appender-ref ref="STDOUT" />
 	</root>
 
-	<logger name="org.avaje" level="TRACE" />
-	<logger name="com.avaje" level="TRACE" />
+	<!--<logger name="org.avaje" level="TRACE" />-->
+	<!--<logger name="com.avaje" level="TRACE" />-->
   
   
   <!-- Logging for SQL etc -->

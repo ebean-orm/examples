@@ -41,7 +41,7 @@ public class Customer extends BaseModel {
   List<UUID> uids = new ArrayList<>();
 
   String comments;
-  
+
   @ManyToOne(cascade=CascadeType.ALL)
   Address billingAddress;
 
