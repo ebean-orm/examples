@@ -73,24 +73,17 @@ public class LoadExampleData {
   public void insertProducts() {
 
     server.execute(() -> {
-      Product p = new Product();
-      p.setName("Chair");
-      p.setSku("C001");
+      Product p = new Product("C001", "Chair");
       server.save(p);
 
-      p = new Product();
-      p.setName("Desk");
-      p.setSku("DSK1");
+      p = new Product("DSK1","Desk");
       server.save(p);
 
-      p = new Product();
-      p.setName("Computer");
-      p.setSku("C002");
+      p = new Product("C002", "Computer");
+
       server.save(p);
 
-      p = new Product();
-      p.setName("Printer");
-      p.setSku("C003");
+      p = new Product("C003", "Printer");
       server.save(p);
     });
   }
@@ -209,9 +202,9 @@ public class LoadExampleData {
 
   private Order createOrder1(Customer customer) {
 
-    Product product1 = new Product(UUID.randomUUID());
-    Product product2 = new Product(UUID.randomUUID());
-    Product product3 = new Product(UUID.randomUUID());
+    Product product1 = Product.find.ref(1L);
+    Product product2 = Product.find.ref(2L);
+    Product product3 = Product.find.ref(3L);
 
     Order order = new Order(customer);
 

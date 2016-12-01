@@ -17,25 +17,23 @@ public class Product {
   public static final ProductFinder find = new ProductFinder();
 
   @Id
-  UUID id;
+  Long id;
 
   @Size(max = 20)
   String sku;
 
   String name;
 
-  public Product() {
+  public Product(String sku, String name) {
+    this.sku = sku;
+    this.name = name;
   }
 
-  public Product(UUID id) {
-    this.id = id;
-  }
-
-  public UUID getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(UUID id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
