@@ -18,6 +18,7 @@
             <column name="email" type="varchar(200)"/>
             <column name="phone" type="varchar(20)"/>
             <column name="customer_id" type="bigint" notnull="true" references="be_customer.id" foreignKeyName="fk_be_contact_customer_id" foreignKeyIndex="ix_be_contact_customer_id"/>
+            <column name="comments" type="clob"/>
             <column name="version" type="bigint" notnull="true"/>
             <column name="when_created" type="timestamp" notnull="true"/>
             <column name="when_updated" type="timestamp" notnull="true"/>
@@ -28,11 +29,11 @@
         </createTable>
         <createTable name="be_customer" pkName="pk_be_customer" comment="Customer table general comment">
             <column name="id" type="bigint" primaryKey="true"/>
-            <column name="inactive" type="bit"/>
+            <column name="inactive" type="boolean"/>
             <column name="name" type="varchar(100)"/>
             <column name="registered" type="date" comment="The date the customer first registered"/>
-            <column name="uids" type="varchar(1000)"/>
-            <column name="comments" type="varchar"/>
+            <column name="uids" type="uuid[]"/>
+            <column name="comments" type="clob"/>
             <column name="billing_address_id" type="bigint" references="o_address.id" foreignKeyName="fk_be_customer_billing_address_id" foreignKeyIndex="ix_be_customer_billing_address_id"/>
             <column name="shipping_address_id" type="bigint" references="o_address.id" foreignKeyName="fk_be_customer_shipping_address_id" foreignKeyIndex="ix_be_customer_shipping_address_id"/>
             <column name="version" type="bigint" notnull="true"/>
@@ -56,7 +57,7 @@
             <column name="order_qty" type="integer"/>
             <column name="ship_qty" type="integer"/>
             <column name="unit_price" type="double"/>
-            <column name="product_id" type="uuid" references="o_product.id" foreignKeyName="fk_o_order_detail_product_id" foreignKeyIndex="ix_o_order_detail_product_id"/>
+            <column name="product_id" type="bigint" references="o_product.id" foreignKeyName="fk_o_order_detail_product_id" foreignKeyIndex="ix_o_order_detail_product_id"/>
             <column name="version" type="bigint" notnull="true"/>
             <column name="when_created" type="timestamp" notnull="true"/>
             <column name="when_updated" type="timestamp" notnull="true"/>
@@ -70,8 +71,8 @@
             <column name="when_created" type="timestamp" notnull="true"/>
             <column name="when_updated" type="timestamp" notnull="true"/>
         </createTable>
-        <createTable name="o_product" identityType="external" pkName="pk_o_product">
-            <column name="id" type="uuid" primaryKey="true" identity="true"/>
+        <createTable name="o_product" pkName="pk_o_product">
+            <column name="id" type="bigint" primaryKey="true"/>
             <column name="sku" type="varchar(20)"/>
             <column name="name" type="varchar"/>
         </createTable>

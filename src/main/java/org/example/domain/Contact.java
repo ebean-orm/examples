@@ -4,6 +4,7 @@ import org.example.domain.finder.ContactFinder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -30,6 +31,9 @@ public class Contact extends BaseModel {
   
   @ManyToOne(optional=false)
   Customer customer;
+
+  @Lob
+  String comments;
 
 //  @OneToMany(mappedBy = "contact")
 //  List<ContactNote> notes;
@@ -88,7 +92,15 @@ public class Contact extends BaseModel {
     this.customer = customer;
   }
 
-//  public List<ContactNote> getNotes() {
+  public String getComments() {
+    return comments;
+  }
+
+  public void setComments(String comments) {
+    this.comments = comments;
+  }
+
+  //  public List<ContactNote> getNotes() {
 //    return notes;
 //  }
 //

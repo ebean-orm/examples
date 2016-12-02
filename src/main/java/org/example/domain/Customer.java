@@ -7,9 +7,11 @@ import org.example.domain.finder.CustomerFinder;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,8 @@ public class Customer extends BaseModel {
   @DbArray // Postgres ARRAY
   List<UUID> uids = new ArrayList<>();
 
+  @Size(max = 1000)
+  @Lob
   String comments;
 
   @ManyToOne(cascade=CascadeType.ALL)
