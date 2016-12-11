@@ -1,6 +1,6 @@
 package org.example.domain.finder;
 
-import com.avaje.ebean.Finder;
+import io.ebean.Finder;
 import org.example.domain.Customer;
 import org.example.domain.query.QCustomer;
 

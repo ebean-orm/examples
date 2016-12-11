@@ -1,6 +1,6 @@
 package main;
 
-import com.avaje.ebean.Ebean;
+import io.ebean.Ebean;
 
 public class ApplyDbMigration {
 

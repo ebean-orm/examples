@@ -1,6 +1,6 @@
 package org.example.domain;
 
-import com.avaje.ebean.annotation.EnumValue;
+import io.ebean.annotation.EnumValue;
 import org.example.domain.finder.OrderFinder;
 
 import javax.persistence.CascadeType;

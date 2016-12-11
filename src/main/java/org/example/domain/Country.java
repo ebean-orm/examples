@@ -1,7 +1,7 @@
 package org.example.domain;
 
-import com.avaje.ebean.Model;
-import com.avaje.ebean.annotation.Cache;
+import io.ebean.Model;
+import io.ebean.annotation.Cache;
 import org.example.domain.finder.CountryFinder;
 
 import javax.persistence.Entity;

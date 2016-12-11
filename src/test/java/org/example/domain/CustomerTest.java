@@ -1,7 +1,7 @@
 package org.example.domain;
 
-import com.avaje.ebean.BeanState;
-import com.avaje.ebean.Ebean;
+import io.ebean.BeanState;
+import io.ebean.Ebean;
 import org.example.ExampleBaseTestCase;
 import org.testng.annotations.Test;
 
@@ -33,7 +33,7 @@ public class CustomerTest extends ExampleBaseTestCase {
     // invoke lazy loading
     String name = refBean.getName();
     assertThat(name).isEqualTo("Jack");
-    assertThat(beanState.getLoadedProps()).isNull(); // null meaning all properties are loaded
+    assertThat(beanState.getLoadedProps()).contains("id", "name", "version");
   }
 
   @Test(dependsOnMethods = "insert")
@@ -53,6 +53,6 @@ public class CustomerTest extends ExampleBaseTestCase {
     // invoke lazy loading
     String name = found.getName();
     assertThat(name).isEqualTo("Jack");
-    assertThat(beanState.getLoadedProps()).isNull(); // null meaning all properties are loaded
+    assertThat(beanState.getLoadedProps()).contains("id", "name", "inactive");
   }
 }

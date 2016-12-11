@@ -1,7 +1,7 @@
 package org.example.service;
 
-import com.avaje.ebean.Ebean;
-import com.avaje.ebean.EbeanServer;
+import io.ebean.Ebean;
+import io.ebean.EbeanServer;
 import org.example.domain.Address;
 import org.example.domain.Contact;
 import org.example.domain.Country;
@@ -14,7 +14,6 @@ import org.example.domain.Product;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class LoadExampleData {
 

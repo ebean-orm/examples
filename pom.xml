@@ -29,23 +29,23 @@
     </dependency>
 
     <dependency>
-      <groupId>org.avaje.ebean</groupId>
+      <groupId>io.ebean</groupId>
       <artifactId>ebean</artifactId>
-      <version>9.4.2</version>
+      <version>10.1.1</version>
     </dependency>
 
     <!-- support for query beans -->
     <dependency>
-      <groupId>org.avaje.ebean</groupId>
+      <groupId>io.ebean</groupId>
       <artifactId>ebean-querybean</artifactId>
-      <version>9.3.1</version>
+      <version>10.1.1</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
     <dependency>
-      <groupId>org.avaje.ebean</groupId>
+      <groupId>io.ebean</groupId>
       <artifactId>querybean-generator</artifactId>
-      <version>8.1.4</version>
+      <version>10.1.1</version>
       <scope>provided</scope>
     </dependency>
 
@@ -91,7 +91,7 @@
         <configuration>
           <tiles>
             <tile>org.avaje.tile:java-compile:1.1</tile>
-            <tile>org.avaje.ebean.tile:enhancement:1.2</tile>
+            <tile>io.ebean.tile:enhancement:2.1</tile>
           </tiles>
         </configuration>
       </plugin>

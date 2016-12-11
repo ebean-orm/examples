@@ -1,7 +1,7 @@
 package org.example.domain;
 
-import com.avaje.ebean.annotation.DbArray;
-import com.avaje.ebean.annotation.DbComment;
+import io.ebean.annotation.DbArray;
+import io.ebean.annotation.DbComment;
 import org.example.domain.finder.CustomerFinder;
 
 import javax.persistence.CascadeType;

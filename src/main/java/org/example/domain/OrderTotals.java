@@ -1,7 +1,7 @@
 package org.example.domain;
 
-import com.avaje.ebean.annotation.Cache;
-import com.avaje.ebean.annotation.View;
+import io.ebean.annotation.Cache;
+import io.ebean.annotation.View;
 import org.example.domain.finder.OrderTotalsFinder;
 
 import javax.persistence.Entity;
