@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import io.ebean.annotation.Transactional;
 import org.example.ExampleBaseTestCase;
 import org.testng.annotations.Test;
 
@@ -7,6 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class LargeQueryWithFindIterateTest extends ExampleBaseTestCase {
 
+  @Transactional
   @Test
   public void testFindIterate() {
 
