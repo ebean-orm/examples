@@ -9,6 +9,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.example.domain.query.QCustomer.Alias.id;
 
 public class CustomerTest extends ExampleBaseTestCase {
 
@@ -42,7 +43,7 @@ public class CustomerTest extends ExampleBaseTestCase {
     Customer found = Customer.find.where()
         .name.equalTo("Jack")
         .id.eq(jack.getId())
-        .select("id")
+        .select(id)
         .findUnique();
 
     assertThat(found).isNotNull();

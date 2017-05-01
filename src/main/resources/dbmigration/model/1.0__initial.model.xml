@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
 <migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
     <changeSet type="apply">
         <createTable name="o_address" pkName="pk_o_address">
@@ -32,7 +33,7 @@
             <column name="inactive" type="boolean"/>
             <column name="name" type="varchar(100)"/>
             <column name="registered" type="date" comment="The date the customer first registered"/>
-            <column name="uids" type="uuid[]"/>
+            <column name="uids" type="varchar[]"/>
             <column name="comments" type="clob"/>
             <column name="billing_address_id" type="bigint" references="o_address.id" foreignKeyName="fk_be_customer_billing_address_id" foreignKeyIndex="ix_be_customer_billing_address_id"/>
             <column name="shipping_address_id" type="bigint" references="o_address.id" foreignKeyName="fk_be_customer_shipping_address_id" foreignKeyIndex="ix_be_customer_shipping_address_id"/>
