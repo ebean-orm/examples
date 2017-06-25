@@ -19,7 +19,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>9.4-1202-jdbc41</version>
+      <version>9.4.1212</version>
     </dependency>
 
     <!--<dependency>-->
@@ -38,14 +38,14 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean</artifactId>
-      <version>10.2.2</version>
+      <version>10.3.2</version>
     </dependency>
 
     <!-- support for query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-querybean</artifactId>
-      <version>10.2.1</version>
+      <version>10.3.1</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
@@ -98,7 +98,7 @@
         <configuration>
           <tiles>
             <tile>org.avaje.tile:java-compile:1.1</tile>
-            <tile>io.ebean.tile:enhancement:2.7</tile>
+            <tile>io.ebean.tile:enhancement:2.8</tile>
           </tiles>
         </configuration>
       </plugin>

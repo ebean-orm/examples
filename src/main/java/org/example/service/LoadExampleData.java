@@ -2,6 +2,8 @@ package org.example.service;
 
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
+import io.ebean.TxType;
+import io.ebean.annotation.Transactional;
 import org.example.domain.Address;
 import org.example.domain.Contact;
 import org.example.domain.Country;
@@ -10,12 +12,16 @@ import org.example.domain.Order;
 import org.example.domain.Order.Status;
 import org.example.domain.OrderDetail;
 import org.example.domain.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoadExampleData {
+
+  private static final Logger log = LoggerFactory.getLogger(LoadExampleData.class);
 
   private static boolean runOnce;
 
@@ -26,19 +32,19 @@ public class LoadExampleData {
     if (runOnce) {
       return;
     }
+    new LoadExampleData().loadAll();
+  }
 
-    final LoadExampleData me = new LoadExampleData();
-
-    server.execute(() -> {
-      if (Country.find.query().findCount() > 0) {
-        return;
-      }
-      me.deleteAll();
-      me.insertCountries();
-      me.insertProducts();
-      me.insertTestCustAndOrders();
-    });
+  @Transactional(type = TxType.REQUIRES_NEW)
+  public synchronized void loadAll() {
     runOnce = true;
+    if (Country.find.query().findCount() > 0) {
+      return;
+    }
+    deleteAll();
+    insertCountries();
+    insertProducts();
+    insertTestCustAndOrders();
   }
 
   public void deleteAll() {
