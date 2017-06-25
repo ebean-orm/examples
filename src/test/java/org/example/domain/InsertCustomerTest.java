@@ -4,6 +4,7 @@ import io.ebean.Ebean;
 import io.ebean.Transaction;
 import io.ebean.annotation.Transactional;
 import org.example.ExampleBaseTestCase;
+import org.example.service.LoadExampleData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
@@ -100,6 +101,8 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
   @Transactional
   @Test
   public void testQuery() {
+
+    LoadExampleData.load();
 
     log.info("start");
 
