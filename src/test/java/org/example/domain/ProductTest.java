@@ -4,7 +4,6 @@ import io.ebean.AcquireLockException;
 import io.ebean.Ebean;
 import io.ebean.Query;
 import io.ebean.Transaction;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.example.domain.query.QProduct;
 import org.example.service.LoadExampleData;
 import org.slf4j.Logger;
@@ -87,7 +86,7 @@ public class ProductTest {
     Transaction otherTxn1 = Ebean.getDefaultServer().createTransaction();
     try {
 
-      Product other = Ebean.getDefaultServer().findUnique(queryById, otherTxn1);
+      Product other = Ebean.getDefaultServer().findOne(queryById, otherTxn1);
       other.getName();
       return true;
 

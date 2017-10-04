@@ -1,6 +1,6 @@
 package main;
 
-import io.ebean.Platform;
+import io.ebean.annotation.Platform;
 import io.ebean.dbmigration.DbMigration;
 
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Generate the DB Migration.
  */
-public class MainDbMigration {
+public class GenerateDbMigration {
 
   /**
    * Generate the next "DB schema DIFF" migration.
@@ -26,7 +26,7 @@ public class MainDbMigration {
     // generate a migration using drops from a prior version
     //System.setProperty("ddl.migration.pendingDropsFor", "1.2");
 
-    DbMigration dbMigration = new DbMigration();
+    DbMigration dbMigration = DbMigration.create();
     dbMigration.setPlatform(Platform.POSTGRES);
     // generate the migration ddl and xml
     // ... with EbeanServer in "offline" mode

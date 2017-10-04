@@ -1,6 +1,8 @@
 package org.example.domain;
 
 import org.example.domain.finder.ProductFinder;
+import org.example.domain.query.QProduct;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -65,4 +67,9 @@ public class Product {
     this.name = name;
   }
 
+  public static Product byName(String name) {
+    return new QProduct()
+      .name.equalTo(name)
+      .findOne();
+  }
 }
