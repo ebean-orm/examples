@@ -44,7 +44,7 @@ public class CustomerTest extends ExampleBaseTestCase {
         .name.equalTo("Jack")
         .id.eq(jack.getId())
         .select(id)
-        .findUnique();
+        .findOne();
 
     assertThat(found).isNotNull();
     BeanState beanState = Ebean.getBeanState(found);

@@ -14,7 +14,7 @@ public class ExamplePartialObjectQueryTest extends ExampleBaseTestCase {
        Customer.find
            .select("name, email")
            .id.eq(12)
-           .findUnique();
+           .findOne();
   }
 
   @Test
