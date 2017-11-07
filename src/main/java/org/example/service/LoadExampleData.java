@@ -2,7 +2,7 @@ package org.example.service;
 
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
-import io.ebean.TxType;
+import io.ebean.annotation.TxType;
 import io.ebean.annotation.Transactional;
 import org.example.domain.Address;
 import org.example.domain.Contact;

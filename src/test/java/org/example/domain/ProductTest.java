@@ -87,7 +87,7 @@ public class ProductTest {
     Transaction otherTxn1 = Ebean.getDefaultServer().createTransaction();
     try {
 
-      Product other = Ebean.getDefaultServer().findUnique(queryById, otherTxn1);
+      Product other = Ebean.getDefaultServer().findOne(queryById, otherTxn1);
       other.getName();
       return true;
 

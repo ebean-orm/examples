@@ -110,7 +110,7 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
           Customer.find.where()
             .name.ilike("rob%")
             .findList();
-    
+
       assertNotNull(customers);
 
     log.info("end");

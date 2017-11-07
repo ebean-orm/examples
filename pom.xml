@@ -38,7 +38,7 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean</artifactId>
-      <version>10.3.2</version>
+      <version>11.4.1</version>
     </dependency>
 
     <!-- support for query beans -->
@@ -98,7 +98,7 @@
         <configuration>
           <tiles>
             <tile>org.avaje.tile:java-compile:1.1</tile>
-            <tile>io.ebean.tile:enhancement:2.8</tile>
+            <tile>io.ebean.tile:enhancement:5.1</tile>
           </tiles>
         </configuration>
       </plugin>
