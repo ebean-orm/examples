@@ -24,7 +24,7 @@ import io.ebean.annotation.UpdatedTimestamp;
 public abstract class BaseModel extends Model {
 
   @Id
-  Long id;
+  long id;
 
   @Version
   Long version;
@@ -35,11 +35,11 @@ public abstract class BaseModel extends Model {
   @UpdatedTimestamp
   Timestamp whenUpdated;
 
-  public Long getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(long id) {
     this.id = id;
   }
 

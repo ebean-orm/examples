@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Generate the DB Migration.
  */
-public class MainDbMigration {
+public class GenerateDbMigration {
 
   /**
    * Generate the next "DB schema DIFF" migration.
