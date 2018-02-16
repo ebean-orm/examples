@@ -7,13 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import java.util.UUID;
 
 /**
  * Product entity bean.
  */
 @Entity
-@Table(name = "o_product")
+@Table(name = "product")
 public class Product {
 
   public static final ProductFinder find = new ProductFinder();

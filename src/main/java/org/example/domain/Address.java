@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
  * Address entity bean.
  */
 @Entity
-@Table(name = "o_address")
+@Table(name = "address")
 public class Address extends BaseModel {
 
   public static final AddressFinder find = new AddressFinder();

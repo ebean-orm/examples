@@ -1,15 +1,72 @@
 ebean:
+  migration:
+    run: false
+
   ddl:
     generate: true
     run: true
+#    createOnly: true
 
-  oracle:
-    user: rob
-    password: ${db_user:someDefault}
-    url: something here
-    driver: com.foo.Bar
+  docstore:
+    url: http://127.0.0.1:9200
+    active: true
+    generateMapping: true
+    dropCreate: true
+#    useDocker: true
+    elasticVersion: 5.6
+
+#    create: true
+
+#datasource:
+#  db:
+#    username: sa
+#    password:
+#    databaseUrl: jdbc:h2:mem:tests
+#    databaseDriver: org.h2.Driver
+
+
+  test:
+    platforms: h2, postgres, mysql, oracle, sqlserver
+#    useDocker: false
+#    dockerMode: dropCreate
+    ddlMode: dropCreate # none | dropCreate | create | migrations
+    dbName: junk
+    postgres:
+      version: 9.6
+      extensions: pgcryto, hstore
+      username: asd
+      password: test
+      url: asd
+      driver: asd
+
+
+
+docker:
+  postgres:
+#    port: 6432
+    version: 9.6
+    extensions: pgcryto, hstore
+    username: ${test_db}
+    password: test
+    databaseUrl: jdbc:postgresql://localhost:6432/${test_db}
+    databaseDriver: org.postgresql.Driver
 
   mysql:
-    user: frank
-    url: other
+    version: 5.6
+    username: ${test_db}
+    password: test
+    databaseUrl: jdbc:mysql://localhost:4306/${test_db}
+    databaseDriver: com.mysql.jdbc.Driver
 
+  sqlserver:
+    version: 2017-CE
+    username: ${test_db}
+    password: SqlS3rv#r
+    databaseUrl: jdbc:sqlserver://localhost:1433;databaseName=${test_db};selectMethod=cursor
+    databaseDriver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  oracle:
+    username: ${test_db}
+    password: test
+    databaseUrl: jdbc:oracle:thin:@127.0.0.1:1521:XE
+    databaseDriver: oracle.jdbc.driver.OracleDriver

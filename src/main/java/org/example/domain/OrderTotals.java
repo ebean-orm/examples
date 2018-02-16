@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 
 @Cache(enableQueryCache = true)
 @Entity
-@View(name = "order_agg_vw", dependentTables="o_order")
+@View(name = "order_agg_vw", dependentTables="order")
 public class OrderTotals {
 
   public static final OrderTotalsFinder find = new OrderTotalsFinder();

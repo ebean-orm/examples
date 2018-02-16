@@ -12,7 +12,7 @@ import javax.persistence.Table;
  * Contact entity bean.
  */
 @Entity
-@Table(name="be_contact")
+@Table(name="contact")
 public class Contact extends BaseModel {
 
   public static final ContactFinder find = new ContactFinder();

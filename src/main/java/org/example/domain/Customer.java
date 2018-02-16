@@ -27,7 +27,7 @@ import java.util.UUID;
  */
 @DbComment("Customer table general comment")
 @Entity
-@Table(name="be_customer")
+@Table(name="customer")
 public class Customer extends BaseModel {
 
   public static final CustomerFinder find = new CustomerFinder();
@@ -44,7 +44,6 @@ public class Customer extends BaseModel {
   @DbArray // Postgres ARRAY
   List<UUID> uids = new ArrayList<>();
 
-  @Size(max = 1000)
   @Lob
   String comments;
 

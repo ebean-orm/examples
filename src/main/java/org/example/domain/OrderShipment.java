@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="o_order_shipment")
+@Table(name="order_shipment")
 public class OrderShipment extends BaseModel {
 
   @ManyToOne(optional = false)

@@ -61,7 +61,7 @@ public class ProductTest {
               .forUpdateNoWait()
               .query();
 
-//          Ebean.findNative(Product.class, "select * from o_product where id = :id for update nowait")
+//          Ebean.findNative(Product.class, "select * from product where id = :id for update nowait")
 //          .setParameter("id", firstProduct.getId());
 
       assertThat(obtainWithLock(queryById)).isFalse();

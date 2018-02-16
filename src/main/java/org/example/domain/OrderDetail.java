@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Order Detail entity bean.
  */
 @Entity
-@Table(name = "o_order_detail")
+@Table(name = "order_detail")
 public class OrderDetail extends BaseModel {
 
   public static final OrderDetailFinder find = new OrderDetailFinder();

@@ -18,4 +18,6 @@
     <logger name="io.ebean.SUM" level="TRACE"/>
     <logger name="io.ebean.DDL" level="TRACE"/>
 
+    <logger name="org.avaje.docker" level="DEBUG"/>
+
 </configuration>

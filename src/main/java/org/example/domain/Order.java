@@ -17,7 +17,7 @@ import java.util.List;
  * Order entity bean.
  */
 @Entity
-@Table(name = "o_order")
+@Table(name = "orders")
 public class Order extends BaseModel {
 
   public static final OrderFinder find = new OrderFinder();

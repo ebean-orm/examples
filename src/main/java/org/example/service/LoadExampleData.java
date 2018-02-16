@@ -62,8 +62,8 @@ public class LoadExampleData {
       server.createUpdate(Address.class, "delete from address").execute();
 
       // sql update uses table and column names
-      server.createSqlUpdate("delete from o_country").execute();
-      server.createSqlUpdate("delete from o_product").execute();
+      server.createSqlUpdate("delete from country").execute();
+      server.createSqlUpdate("delete from product").execute();
     });
   }
 

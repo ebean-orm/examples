@@ -16,23 +16,35 @@
 
   <dependencies>
 
+    <!--
+      Normally you only have the 1 JDBC driver
+      but we are running and testing this against
+      postgres, sqlserver and mysql
+    -->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>9.4.1212</version>
     </dependency>
 
-    <!--<dependency>-->
-      <!--<groupId>mysql</groupId>-->
-      <!--<artifactId>mysql-connector-java</artifactId>-->
-      <!--<version>5.1.39</version>-->
-      <!--&lt;!&ndash;<scope>test</scope>&ndash;&gt;-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <version>6.2.2.jre8</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.39</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean</artifactId>
-      <version>11.4.1</version>
+      <version>11.10.5</version>
     </dependency>
 
     <!-- support for query beans -->
@@ -75,7 +87,7 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-docker-run</artifactId>
-      <version>1.2.1</version>
+      <version>1.5.1</version>
       <scope>test</scope>
     </dependency>
 

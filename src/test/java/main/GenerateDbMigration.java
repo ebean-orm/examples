@@ -28,6 +28,8 @@ public class GenerateDbMigration {
 
     DbMigration dbMigration = DbMigration.create();
     dbMigration.setPlatform(Platform.POSTGRES);
+//    dbMigration.setStrictMode(false);
+
     // generate the migration ddl and xml
     // ... with EbeanServer in "offline" mode
     dbMigration.generateMigration();
