@@ -35,7 +35,8 @@ public class Customer extends BaseModel {
   boolean inactive;
 
   @NotNull
-  @Column(length=100)
+  @Column(unique = true)
+  @Size(min = 1, max = 100)
   String name;
 
   @DbComment("The date the customer first registered")

@@ -51,7 +51,7 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-querybean</artifactId>
-      <version>11.1.1</version>
+      <version>11.2.1</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
