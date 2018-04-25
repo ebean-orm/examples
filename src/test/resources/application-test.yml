@@ -12,6 +12,14 @@ ebean:
 #    containerMode: dropCreate
 
 
+
+
+## ----------------------------------------------------
+##
+## Effectively the above for Postgres translates to the datasource settings below
+## as well as the ebean.ddl and ebean.migration settings below.
+##
+
 #datasource:
 #  db:
 ##    username: test_ex
