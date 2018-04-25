@@ -2,8 +2,8 @@ package org.example.service;
 
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
-import io.ebean.annotation.TxType;
 import io.ebean.annotation.Transactional;
+import io.ebean.annotation.TxType;
 import org.example.domain.Address;
 import org.example.domain.Contact;
 import org.example.domain.Country;
@@ -35,19 +35,25 @@ public class LoadExampleData {
     new LoadExampleData().loadAll();
   }
 
-  @Transactional(type = TxType.REQUIRES_NEW)
   public synchronized void loadAll() {
     runOnce = true;
     if (Country.find.query().findCount() > 0) {
       return;
     }
     deleteAll();
-    insertCountries();
-    insertProducts();
+    insertReference();
     insertTestCustAndOrders();
   }
 
-  public void deleteAll() {
+  @Transactional(type = TxType.REQUIRES_NEW)
+  private void insertReference() {
+    insertCountries();
+    insertProducts();
+  }
+
+
+  //@Transactional(type = TxType.REQUIRES_NEW)
+  private void deleteAll() {
     Ebean.execute(() -> {
 
       // Ebean.currentTransaction().setBatchMode(false);
@@ -67,7 +73,7 @@ public class LoadExampleData {
     });
   }
 
-  public void insertCountries() {
+  private void insertCountries() {
 
     server.execute(() ->  {
       new Country("NZ", "New Zealand").save();
@@ -75,26 +81,19 @@ public class LoadExampleData {
     });
   }
 
-  public void insertProducts() {
+  private List<Product> products = new ArrayList<>();
 
-    server.execute(() -> {
-      Product p = new Product("C001", "Chair");
-      server.save(p);
+  private void insertProducts() {
 
-      p = new Product("DSK1","Desk");
-      server.save(p);
+    products.add(new Product("C001", "Chair"));
+    products.add(new Product("DSK1", "Desk"));
+    products.add(new Product("C002", "Computer"));
+    products.add(new Product("C003", "Printer"));
 
-      p = new Product("C002", "Computer");
-
-      server.save(p);
-
-      p = new Product("C003", "Printer");
-      server.save(p);
-    });
+    server.saveAll(products);
   }
 
-  public void insertTestCustAndOrders() {
-
+  private void insertTestCustAndOrders() {
 
     Ebean.execute( () -> {
         Customer cust1 = insertCustomer("Rob");
@@ -207,9 +206,10 @@ public class LoadExampleData {
 
   private Order createOrder1(Customer customer) {
 
-    Product product1 = Product.find.ref(1L);
-    Product product2 = Product.find.ref(2L);
-    Product product3 = Product.find.ref(3L);
+    // these id values are not predicable depending on DB Id type (Cockroach serial)
+    Product product1 = Product.find.ref(products.get(0).getId());
+    Product product2 = Product.find.ref(products.get(1).getId());
+    Product product3 = Product.find.ref(products.get(2).getId());
 
     Order order = new Order(customer);
 
@@ -227,7 +227,7 @@ public class LoadExampleData {
 
   private void createOrder2(Customer customer) {
 
-    Product product1 = Ebean.getReference(Product.class, 1);
+    Product product1 = Product.find.ref(products.get(0).getId());
 
     Order order = new Order(customer);
     order.setStatus(Status.SHIPPED);
@@ -244,15 +244,16 @@ public class LoadExampleData {
 
   private void createOrder3(Customer customer) {
 
-    Product product1 = Product.find.ref(1L);
-    Product product3 = Product.find.ref(3L);
+    Product product0 = Product.find.ref(products.get(0).getId());
+    Product product3 = Product.find.ref(products.get(3).getId());
+
 
     Order order = new Order(customer);
     order.setStatus(Status.COMPLETE);
     order.setShipDate(LocalDate.now().plusDays(2));
 
     List<OrderDetail> details = new ArrayList<>();
-    details.add(new OrderDetail(product1, 3, 10.50));
+    details.add(new OrderDetail(product0, 3, 10.50));
     details.add(new OrderDetail(product3, 40, 2.10));
     order.setDetails(details);
 

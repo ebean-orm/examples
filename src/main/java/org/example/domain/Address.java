@@ -28,7 +28,7 @@ public class Address extends BaseModel {
   Country country;
 
   /**
-   * Create a copy of the address. Used to provide a 'snapshot' of 
+   * Create a copy of the address. Used to provide a 'snapshot' of
    * the shippingAddress for a give order.
    */
   public Address createCopy() {
@@ -39,7 +39,7 @@ public class Address extends BaseModel {
     copy.setCountry(country);
     return copy;
   }
-  
+
   public String toString() {
     return id + " " + line1 + " " + line2 + " " + city + " " + country;
   }

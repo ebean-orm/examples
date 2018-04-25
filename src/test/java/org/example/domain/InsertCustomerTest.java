@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -24,9 +25,14 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
 
     Customer customer = new Customer("Robin");
     customer.setRegistered( LocalDate.of(2014, 4, 1));
+    customer.getUids().add(UUID.randomUUID());
+    customer.getUids().add(UUID.randomUUID());
+    customer.getUids().add(UUID.randomUUID());
 
     // insert the customer
     customer.save();
+
+    Customer one = Customer.find.query().setId(customer.getId()).forUpdate().findOne();
 
     Customer fetched = Customer.find.byId(customer.getId());
 

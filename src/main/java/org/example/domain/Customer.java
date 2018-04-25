@@ -42,7 +42,7 @@ public class Customer extends BaseModel {
   @DbComment("The date the customer first registered")
   LocalDate registered;
 
-  @DbArray // Postgres ARRAY
+  @DbArray // ARRAY
   List<UUID> uids = new ArrayList<>();
 
   @Lob
@@ -63,6 +63,14 @@ public class Customer extends BaseModel {
 
   public String toString() {
     return "id:" + id + " name:" + name;
+  }
+
+  public List<UUID> getUids() {
+    return uids;
+  }
+
+  public void setUids(List<UUID> uids) {
+    this.uids = uids;
   }
 
   public boolean isInactive() {
@@ -96,7 +104,7 @@ public class Customer extends BaseModel {
   public void setComments(String comments) {
     this.comments = comments;
   }
-  
+
   public Address getBillingAddress() {
     return billingAddress;
   }
@@ -129,9 +137,9 @@ public class Customer extends BaseModel {
       contacts = new ArrayList<>();
     }
     // setting the customer is automatically done when Ebean does
-    // a cascade save from customer to contacts. 
+    // a cascade save from customer to contacts.
     contact.setCustomer(this);
     contacts.add(contact);
   }
-  
+
 }

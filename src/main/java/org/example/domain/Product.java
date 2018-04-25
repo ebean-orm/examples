@@ -23,6 +23,7 @@ public class Product {
   @Size(max = 20)
   String sku;
 
+  @Size(max = 50)
   String name;
 
   public Product(String sku, String name) {

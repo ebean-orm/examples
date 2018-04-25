@@ -1,0 +1,36 @@
+ebean:
+#  databasePlatformName: sqlserver17
+  test:
+    platform: postgres #, h2, postgres, mysql, oracle, sqlserver
+    ddlMode: dropCreate # none | dropCreate | create | migration | createOnly | migrationDropCreate
+    dbName: test_ex
+    postgres:
+
+#    sqlserver:
+#      databasePlatformName: sqlserver17
+
+#    containerMode: dropCreate
+
+
+#datasource:
+#  db:
+##    username: test_ex
+##    password: test
+##    url: jdbc:postgresql://localhost:6432/test_ex
+##    driver: org.postgresql.Driver
+#
+#    username: test_ex
+#    password: test
+#    url: jdbc:postgresql://localhost:26257/bank
+#    driver: org.postgresql.Driver
+#
+#
+#
+#ebean:
+#  migration:
+#    run: false
+#  ddl:
+#    generate: true
+#    run: true
+##    createOnly: true
+

@@ -1,0 +1,23 @@
+
+## load external properties
+#load:
+#  properties: ${user.home}/config/my-application.properties
+
+datasource:
+  db:
+    username: sa
+    password: sa
+    url: jdbc:h2:mem:tests
+    driver: org.h2.Driver
+
+#ebean:
+#  docstore:
+#    url: http://127.0.0.1:9200
+#    active: true
+#  migration:
+#   run: true
+
+
+
+
+
