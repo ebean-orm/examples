@@ -50,14 +50,8 @@
 
     <dependency>
       <groupId>io.ebean</groupId>
-      <artifactId>ebean-migration</artifactId>
-      <version>11.5.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.ebean</groupId>
       <artifactId>ebean</artifactId>
-      <version>11.15.1</version>
+      <version>11.16.1</version>
     </dependency>
 
     <!-- support for query beans -->
@@ -101,7 +95,7 @@
     <dependency>
       <groupId>io.ebean.test</groupId>
       <artifactId>ebean-test-config</artifactId>
-      <version>11.15.2</version>
+      <version>11.15.3</version>
       <scope>test</scope>
     </dependency>
 
@@ -151,7 +145,7 @@
         <configuration>
           <tiles>
             <tile>org.avaje.tile:java-compile:1.1</tile>
-            <tile>io.ebean.tile:enhancement:5.5</tile>
+            <tile>io.ebean.tile:enhancement:5.6</tile>
           </tiles>
         </configuration>
       </plugin>

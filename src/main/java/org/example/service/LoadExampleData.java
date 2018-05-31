@@ -2,8 +2,7 @@ package org.example.service;
 
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
-import io.ebean.annotation.Transactional;
-import io.ebean.annotation.TxType;
+import io.ebean.Transaction;
 import org.example.domain.Address;
 import org.example.domain.Contact;
 import org.example.domain.Country;
@@ -23,36 +22,48 @@ public class LoadExampleData {
 
   private static final Logger log = LoggerFactory.getLogger(LoadExampleData.class);
 
-  private static boolean runOnce;
-
   private static EbeanServer server = Ebean.getServer(null);
+
+  private static LoadExampleData data = new LoadExampleData();
+
+  private boolean runOnce;
 
   public static synchronized void load() {
 
-    if (runOnce) {
+    if (data.runOnce) {
       return;
     }
-    new LoadExampleData().loadAll();
+    data.loadAll();
   }
 
-  public synchronized void loadAll() {
+  private synchronized void loadAll() {
+
+    log.info("loading test data ----------------------------------------------");
+
     runOnce = true;
     if (Country.find.query().findCount() > 0) {
       return;
     }
-    deleteAll();
-    insertReference();
-    insertTestCustAndOrders();
+
+    try (Transaction transaction = Ebean.beginTransaction()) {
+      try {
+        deleteAll();
+        insertReference();
+        insertTestCustAndOrders();
+        transaction.commit();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        log.error("Error seeding", e);
+      }
+    }
   }
 
-  @Transactional(type = TxType.REQUIRES_NEW)
   private void insertReference() {
     insertCountries();
     insertProducts();
   }
 
 
-  //@Transactional(type = TxType.REQUIRES_NEW)
   private void deleteAll() {
     Ebean.execute(() -> {
 
@@ -75,7 +86,7 @@ public class LoadExampleData {
 
   private void insertCountries() {
 
-    server.execute(() ->  {
+    server.execute(() -> {
       new Country("NZ", "New Zealand").save();
       new Country("AU", "Australia").save();
     });
@@ -95,7 +106,7 @@ public class LoadExampleData {
 
   private void insertTestCustAndOrders() {
 
-    Ebean.execute( () -> {
+    Ebean.execute(() -> {
         Customer cust1 = insertCustomer("Rob");
         Customer cust2 = insertCustomerNoAddress();
         insertCustomerFiona();

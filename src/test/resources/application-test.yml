@@ -1,10 +1,12 @@
 ebean:
 #  databasePlatformName: sqlserver17
   test:
+#    shutdown: remove
     platform: postgres #, h2, postgres, mysql, oracle, sqlserver
     ddlMode: dropCreate # none | dropCreate | create | migration | createOnly | migrationDropCreate
     dbName: test_ex
-    postgres:
+#    postgres:
+#      version: 9.6
 
 #    sqlserver:
 #      databasePlatformName: sqlserver17

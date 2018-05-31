@@ -2,11 +2,8 @@ package org.example.domain;
 
 import io.ebean.Ebean;
 import io.ebean.Transaction;
-import io.ebean.annotation.Transactional;
 import org.example.ExampleBaseTestCase;
 import org.example.service.LoadExampleData;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
@@ -18,7 +15,6 @@ import static org.testng.Assert.assertNotNull;
 
 public class InsertCustomerTest extends ExampleBaseTestCase {
 
-  private static final Logger log = LoggerFactory.getLogger(InsertCustomerTest.class);
 
   @Test
   public void test() {
