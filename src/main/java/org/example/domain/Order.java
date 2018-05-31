@@ -1,6 +1,7 @@
 package org.example.domain;
 
 import io.ebean.annotation.EnumValue;
+import io.ebean.annotation.NotNull;
 import org.example.domain.finder.OrderFinder;
 
 import javax.persistence.CascadeType;
@@ -35,6 +36,7 @@ public class Order extends BaseModel {
     FOO
   }
 
+  @NotNull
   Status status;
 
   LocalDate orderDate;
@@ -63,7 +65,7 @@ public class Order extends BaseModel {
   public String toString() {
     return id + " status:" + status + " customer:" + customer;
   }
-  
+
   /**
    * Return order date.
    */

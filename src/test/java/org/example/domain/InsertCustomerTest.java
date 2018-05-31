@@ -104,13 +104,10 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
     }
   }
 
-  @Transactional
   @Test
   public void testQuery() {
 
     LoadExampleData.load();
-
-    log.info("start");
 
     List<Customer> customers =
           Customer.find.where()
@@ -118,10 +115,6 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
             .findList();
 
       assertNotNull(customers);
-
-    log.info("end");
-
-    Ebean.setRollbackOnly();
 
     Product p = new Product("ad", "asd");
     Ebean.save(p);

@@ -16,12 +16,12 @@
 
   <dependencies>
 
-    <dependency>
-      <groupId>oracle</groupId>
-      <artifactId>oracle-jdbc</artifactId>
-      <version>7.0</version>
-      <scope>test</scope>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>oracle</groupId>-->
+      <!--<artifactId>oracle-jdbc</artifactId>-->
+      <!--<version>7.0</version>-->
+      <!--<scope>test</scope>-->
+    <!--</dependency>-->
 
     <!--
       Normally you only have the 1 JDBC driver
