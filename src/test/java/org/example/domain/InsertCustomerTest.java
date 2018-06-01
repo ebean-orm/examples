@@ -2,6 +2,7 @@ package org.example.domain;
 
 import io.ebean.Ebean;
 import io.ebean.Transaction;
+import io.ebean.test.LoggedSql;
 import org.example.ExampleBaseTestCase;
 import org.example.service.LoadExampleData;
 import org.testng.annotations.Test;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
@@ -105,6 +107,8 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
 
     LoadExampleData.load();
 
+    LoggedSql.start();
+
     List<Customer> customers =
           Customer.find.where()
             .name.ilike("rob%")
@@ -114,6 +118,12 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
 
     Product p = new Product("ad", "asd");
     Ebean.save(p);
+
+    List<String> sql = LoggedSql.stop();
+    assertThat(sql).hasSize(2);
+    assertThat(sql.get(0)).contains("from customer");
+    assertThat(sql.get(1)).contains("into product");
+
   }
 
 }

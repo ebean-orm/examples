@@ -1,7 +1,6 @@
 package org.example.domain;
 
 import io.ebean.annotation.EnumValue;
-import io.ebean.annotation.NotNull;
 import org.example.domain.finder.OrderFinder;
 
 import javax.persistence.CascadeType;
@@ -10,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
