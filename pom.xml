@@ -31,7 +31,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>9.4.1212</version>
+      <version>42.2.2</version>
     </dependency>
 
     <dependency>
@@ -51,21 +51,21 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean</artifactId>
-      <version>11.22.10</version>
+      <version>11.24.1</version>
     </dependency>
 
     <!-- support for query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-querybean</artifactId>
-      <version>11.19.1</version>
+      <version>11.24.1</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>querybean-generator</artifactId>
-      <version>11.19.1</version>
+      <version>11.24.1</version>
       <scope>provided</scope>
     </dependency>
 
@@ -95,7 +95,7 @@
     <dependency>
       <groupId>io.ebean.test</groupId>
       <artifactId>ebean-test-config</artifactId>
-      <version>11.21.1</version>
+      <version>11.24.1</version>
       <scope>test</scope>
     </dependency>
 
