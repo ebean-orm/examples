@@ -1,46 +1,9 @@
 ebean:
+#  dbSchema: myapp
 #  databasePlatformName: sqlserver17
   test:
-#    shutdown: remove
-    platform: postgres #, h2, postgres, mysql, oracle, sqlserver
+#    useDocker: false
+#    shutdown: stop # stop | remove
+    platform: mysql # h2, postgres, mysql, oracle, sqlserver, sqlite
     ddlMode: dropCreate # none | dropCreate | create | migration | createOnly | migrationDropCreate
-    dbName: test_ex
-#    postgres:
-#      version: 9.6
-
-#    sqlserver:
-#      databasePlatformName: sqlserver17
-
-#    containerMode: dropCreate
-
-
-
-
-## ----------------------------------------------------
-##
-## Effectively the above for Postgres translates to the datasource settings below
-## as well as the ebean.ddl and ebean.migration settings below.
-##
-
-#datasource:
-#  db:
-##    username: test_ex
-##    password: test
-##    url: jdbc:postgresql://localhost:6432/test_ex
-##    driver: org.postgresql.Driver
-#
-#    username: test_ex
-#    password: test
-#    url: jdbc:postgresql://localhost:26257/bank
-#    driver: org.postgresql.Driver
-#
-#
-#
-#ebean:
-#  migration:
-#    run: false
-#  ddl:
-#    generate: true
-#    run: true
-##    createOnly: true
-
+    dbName: myapp

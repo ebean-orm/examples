@@ -1,23 +1,22 @@
 package org.example.domain;
 
-import java.sql.Timestamp;
+import io.ebean.Model;
+import io.ebean.annotation.WhenCreated;
+import io.ebean.annotation.WhenModified;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
-
-import io.ebean.Model;
-import io.ebean.annotation.CreatedTimestamp;
-import io.ebean.annotation.UpdatedTimestamp;
+import java.time.Instant;
 
 /**
- * Base domain object with Id, version, whenCreated and whenUpdated.
+ * Base domain object with Id, version, whenCreated and whenModified.
  *
  * <p>
  * Extending Model to enable the 'active record' style.
  *
  * <p>
- * whenCreated and whenUpdated are generally useful for maintaining external search services (like
+ * whenCreated and whenModified are generally useful for maintaining external search services (like
  * elasticsearch) and audit.
  */
 @MappedSuperclass
@@ -29,11 +28,11 @@ public abstract class BaseModel extends Model {
   @Version
   Long version;
 
-  @CreatedTimestamp
-  Timestamp whenCreated;
+  @WhenCreated
+  Instant whenCreated;
 
-  @UpdatedTimestamp
-  Timestamp whenUpdated;
+  @WhenModified
+  Instant whenModified;
 
   public long getId() {
     return id;
@@ -51,20 +50,20 @@ public abstract class BaseModel extends Model {
     this.version = version;
   }
 
-  public Timestamp getWhenCreated() {
+  public Instant getWhenCreated() {
     return whenCreated;
   }
 
-  public void setWhenCreated(Timestamp whenCreated) {
+  public void setWhenCreated(Instant whenCreated) {
     this.whenCreated = whenCreated;
   }
 
-  public Timestamp getWhenUpdated() {
-    return whenUpdated;
+  public Instant getWhenModified() {
+    return whenModified;
   }
 
-  public void setWhenUpdated(Timestamp whenUpdated) {
-    this.whenUpdated = whenUpdated;
+  public void setWhenModified(Instant whenModified) {
+    this.whenModified = whenModified;
   }
 
 }
