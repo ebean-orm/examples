@@ -50,7 +50,7 @@ public class ProductTest {
           .name.istartsWith("c")
           .orderBy()
             .name.asc()
-          .setForUpdate(true)
+          .forUpdate()
           .findList();
 
       Product firstProduct = list.get(0);

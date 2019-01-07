@@ -19,16 +19,16 @@ public class Contact extends BaseModel {
 
   @Column(length=50, nullable = false)
   String firstName;
-  
+
   @Column(length=50)
   String lastName;
-  
+
   @Column(length=200)
   String email;
 
   @Column(length=20)
   String phone;
-  
+
   @ManyToOne(optional=false)
   Customer customer;
 
@@ -43,7 +43,7 @@ public class Contact extends BaseModel {
    */
   public Contact() {
   }
-  
+
   /**
    * Construct with a firstName and lastName.
    */
@@ -51,7 +51,7 @@ public class Contact extends BaseModel {
     this.firstName = firstName;
     this.lastName = lastName;
   }
-  
+
   public String getFirstName() {
     return firstName;
   }
