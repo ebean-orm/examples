@@ -1,8 +1,9 @@
 package org.example.domain;
 
 import io.ebean.BeanState;
-import io.ebean.Ebean;
+import io.ebean.DB;
 import org.example.ExampleBaseTestCase;
+import org.example.domain.query.QCustomer;
 import org.testng.annotations.Test;
 
 import java.util.Set;
@@ -28,7 +29,7 @@ public class CustomerTest extends ExampleBaseTestCase {
     Customer refBean = Customer.find.ref(jack.getId());
 
     // only Id property is loaded
-    BeanState beanState = Ebean.getBeanState(refBean);
+    BeanState beanState = DB.getBeanState(refBean);
     assertThat(beanState.getLoadedProps()).containsExactly("id");
 
     // invoke lazy loading
@@ -40,16 +41,16 @@ public class CustomerTest extends ExampleBaseTestCase {
   @Test(dependsOnMethods = "insert")
   public void partialLoad() {
 
-    Customer found = Customer.find.where()
-        .name.equalTo("Jack")
-        .id.eq(jack.getId())
-        .select(id)
+    Customer found = new QCustomer()
+      .name.equalTo("Jack")
+      .id.eq(jack.getId())
+      .select(id)
       .findOne();
 
     assertThat(found).isNotNull();
-    BeanState beanState = Ebean.getBeanState(found);
+    BeanState beanState = DB.getBeanState(found);
     Set<String> loadedProps = beanState.getLoadedProps();
-    assertThat(loadedProps).containsExactly("id", "contacts");
+    assertThat(loadedProps).containsExactly("id", "contacts", "orders");
 
     // invoke lazy loading
     String name = found.getName();

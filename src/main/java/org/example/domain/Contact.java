@@ -52,6 +52,11 @@ public class Contact extends BaseModel {
     this.lastName = lastName;
   }
 
+  public Contact(Customer customer, String firstName, String lastName) {
+    this(firstName, lastName);
+    this.customer = customer;
+  }
+
   public String getFirstName() {
     return firstName;
   }

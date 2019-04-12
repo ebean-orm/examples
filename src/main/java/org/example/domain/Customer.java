@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.net.InetAddress;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,14 +49,19 @@ public class Customer extends BaseModel {
   @Lob
   String comments;
 
-  @ManyToOne(cascade=CascadeType.ALL)
+  @ManyToOne(cascade=CascadeType.PERSIST)
   Address billingAddress;
 
-  @ManyToOne(cascade=CascadeType.ALL)
+  @ManyToOne(cascade=CascadeType.PERSIST)
   Address shippingAddress;
 
   @OneToMany(mappedBy="customer", cascade=CascadeType.PERSIST)
   List<Contact> contacts;
+
+  @OneToMany(mappedBy="customer")
+  List<Order> orders;
+
+  InetAddress lastAddr;
 
   public Customer(String name) {
     this.name = name;
@@ -142,4 +148,11 @@ public class Customer extends BaseModel {
     contacts.add(contact);
   }
 
+  public List<Order> getOrders() {
+    return orders;
+  }
+
+  public void setOrders(List<Order> orders) {
+    this.orders = orders;
+  }
 }

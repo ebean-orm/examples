@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import io.ebean.annotation.StorageEngine;
 import org.example.domain.finder.AddressFinder;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 /**
  * Address entity bean.
  */
+@StorageEngine("ENGINE = Log()")
 @Entity
 @Table(name = "address")
 public class Address extends BaseModel {

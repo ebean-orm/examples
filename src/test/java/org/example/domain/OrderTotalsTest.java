@@ -1,11 +1,16 @@
 package org.example.domain;
 
+import org.example.domain.query.QCustomer;
+import org.example.domain.query.QOrder;
+import org.example.domain.query.QOrderTotals;
 import org.example.service.LoadExampleData;
 import org.testng.annotations.Test;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrderTotalsTest {
 
@@ -14,7 +19,40 @@ public class OrderTotalsTest {
 
     LoadExampleData.load();
 
-    List<OrderTotals> orderTotals = OrderTotals.find
+
+    //FetchGroup<Customer> fg = FetchGroup.of(Customer.class)
+
+
+    Address billingAddress = new Address();
+    billingAddress.setLine1("Not long St");
+
+    Customer jack = new Customer("One");
+    jack.setBillingAddress(billingAddress);
+//
+//    Contact c0 = new Contact(jack, "a", "b");
+//    Contact c1 = new Contact(jack, "a", "c");
+
+    jack.save();
+
+
+    Timestamp now = new Timestamp(System.currentTimeMillis());
+
+    Country nz = Country.find.ref("NZ");
+
+    int rows = new QCustomer()
+      .name.startsWith("Rob")
+      .asUpdate()
+        .set("registered", now)
+        .update();
+
+
+    new QCustomer()
+      .alias("cust")
+      .name.istartsWith("Rob")
+      .findList();
+
+
+    List<OrderTotals> orderTotals = new QOrderTotals()
         .where()
         .orderTotal.greaterThan(20)
         .findList();
@@ -27,13 +65,26 @@ public class OrderTotalsTest {
 
     LoadExampleData.load();
 
-    List<OrderTotals> orderTotals = OrderTotals.find
-        .where()
-        .orderTotal.greaterThan(20)
-        .fetch("order", "status")
-        .fetch("order.details")
-        .findList();
+    QOrder o = QOrder.alias();
+    QCustomer c = QCustomer.alias();
 
-    assertThat(orderTotals).isNotEmpty();
+    int rows = new QOrder().findCount();
+
+    List<Order> orders = new QOrder()
+      .select(o.status, o.maxOrderDate, o.totalCount)
+      .customer.fetch(c.name)
+      .status.notEqualTo(Order.Status.COMPLETE)
+      .having()
+      .totalCount.greaterThan(1)
+      .findList();
+
+    LocalDate lastWeek = LocalDate.now().minusWeeks(1);
+
+    // select includes aggregation formula
+    List<Order> moreOrders = new QOrder()
+      .select("status, max(orderDate)")
+      .status.notEqualTo(Order.Status.NEW)
+      .findList();
+
   }
 }

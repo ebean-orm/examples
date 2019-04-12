@@ -51,21 +51,21 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean</artifactId>
-      <version>11.31.1</version>
+      <version>11.37.1</version>
     </dependency>
 
     <!-- support for query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-querybean</artifactId>
-      <version>11.30.1</version>
+      <version>11.37.1</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>querybean-generator</artifactId>
-      <version>11.27.1</version>
+      <version>11.37.1</version>
       <scope>provided</scope>
     </dependency>
 
@@ -95,7 +95,7 @@
     <dependency>
       <groupId>io.ebean.test</groupId>
       <artifactId>ebean-test-config</artifactId>
-      <version>11.29.1</version>
+      <version>11.37.1</version>
       <scope>test</scope>
     </dependency>
 
@@ -145,7 +145,7 @@
         <configuration>
           <tiles>
             <tile>org.avaje.tile:java-compile:1.1</tile>
-            <tile>io.ebean.tile:enhancement:7.4</tile>
+            <tile>io.ebean.tile:enhancement:11.37.1</tile>
           </tiles>
         </configuration>
       </plugin>

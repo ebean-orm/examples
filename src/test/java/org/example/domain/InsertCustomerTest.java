@@ -1,9 +1,10 @@
 package org.example.domain;
 
-import io.ebean.Ebean;
+import io.ebean.DB;
 import io.ebean.Transaction;
 import io.ebean.test.LoggedSql;
 import org.example.ExampleBaseTestCase;
+import org.example.domain.query.QCustomer;
 import org.example.service.LoadExampleData;
 import org.testng.annotations.Test;
 
@@ -22,7 +23,7 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
   public void test() {
 
     Customer customer = new Customer("Robin");
-    customer.setRegistered( LocalDate.of(2014, 4, 1));
+    customer.setRegistered(LocalDate.of(2014, 4, 1));
     customer.getUids().add(UUID.randomUUID());
     customer.getUids().add(UUID.randomUUID());
     customer.getUids().add(UUID.randomUUID());
@@ -35,7 +36,7 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
     Customer fetched = Customer.find.byId(customer.getId());
 
     // fetch using the Ebean singleton style
-    Customer fetched2 = Ebean.find(Customer.class, customer.getId());
+    Customer fetched2 = DB.find(Customer.class, customer.getId());
 
     assertEquals("Robin", fetched.getName());
     assertEquals("Robin", fetched2.getName());
@@ -49,8 +50,7 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
   public void testExplicitTransaction() {
 
     // create a transaction to wrap multiple saves
-    Transaction transaction = Customer.db().beginTransaction();
-    try {
+    try (Transaction transaction = DB.beginTransaction()) {
 
       Customer customer = new Customer("Roberto");
       customer.save();
@@ -59,13 +59,7 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
       otherCustomer.save();
 
       transaction.commit();
-
-    } finally {
-      // this cleans up the transaction if something
-      // fails in the try block
-      transaction.end();
     }
-
   }
 
 
@@ -76,8 +70,7 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
   @Test
   public void testExplicitTransactionWithBatchControls() {
 
-    Transaction transaction = Customer.db().beginTransaction();
-    try {
+    try (Transaction transaction = DB.beginTransaction()) {
 
       // turn off cascade persist for this transaction
       transaction.setPersistCascade(false);
@@ -96,9 +89,6 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
       otherCustomer.save();
 
       transaction.commit();
-
-    } finally {
-      transaction.end();
     }
   }
 
@@ -109,15 +99,14 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
 
     LoggedSql.start();
 
-    List<Customer> customers =
-          Customer.find.where()
-            .name.ilike("rob%")
-            .findList();
+    List<Customer> customers = new QCustomer()
+      .name.ilike("rob%")
+      .findList();
 
-      assertNotNull(customers);
+    assertNotNull(customers);
 
     Product p = new Product("ad", "asd");
-    Ebean.save(p);
+    DB.save(p);
 
     List<String> sql = LoggedSql.stop();
     assertThat(sql).hasSize(2);

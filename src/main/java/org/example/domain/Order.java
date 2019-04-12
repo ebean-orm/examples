@@ -1,5 +1,6 @@
 package org.example.domain;
 
+import io.ebean.annotation.Aggregation;
 import io.ebean.annotation.EnumValue;
 import org.example.domain.finder.OrderFinder;
 
@@ -40,6 +41,12 @@ public class Order extends BaseModel {
   Status status;
 
   LocalDate orderDate;
+
+  @Aggregation("max(orderDate)")
+  LocalDate maxOrderDate;
+
+  @Aggregation("count(*)")
+  Long totalCount;
 
   LocalDate shipDate;
 
@@ -160,4 +167,19 @@ public class Order extends BaseModel {
     details.add(detail);
   }
 
+  public LocalDate getMaxOrderDate() {
+    return maxOrderDate;
+  }
+
+  public void setMaxOrderDate(LocalDate maxOrderDate) {
+    this.maxOrderDate = maxOrderDate;
+  }
+
+  public Long getTotalCount() {
+    return totalCount;
+  }
+
+  public void setTotalCount(Long totalCount) {
+    this.totalCount = totalCount;
+  }
 }

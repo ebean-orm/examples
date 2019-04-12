@@ -1,7 +1,7 @@
 package org.example.domain;
 
 import io.ebean.AcquireLockException;
-import io.ebean.Ebean;
+import io.ebean.DB;
 import io.ebean.Query;
 import io.ebean.Transaction;
 import org.example.domain.query.QProduct;
@@ -24,11 +24,13 @@ public class ProductTest {
 
     LoadExampleData.load();
 
+    Product product = Product.byName("Computer");
+
     List<Product> products = new QProduct()
-        .name.istartsWith("c")
-        .id.greaterThan(0)
-        .sku.icontains("c")
-        .findList();
+      .name.istartsWith("c")
+      .id.greaterThan(0)
+      .sku.icontains("c")
+      .findList();
 
     products.size();
   }
@@ -39,27 +41,24 @@ public class ProductTest {
 
     LoadExampleData.load();
 
-    Transaction txn0 = Ebean.beginTransaction();
+    try (Transaction txn0 = DB.beginTransaction()) {
 
-
-    try {
       Product newProd = new Product("Copper", "COP");
-      Ebean.save(newProd);
+      DB.save(newProd);
 
-      List<Product> list = Product.find.where()
-          .name.istartsWith("c")
-          .orderBy()
-            .name.asc()
-          .forUpdate()
-          .findList();
+      List<Product> list = new QProduct()
+        .name.istartsWith("c")
+        .orderBy()
+        .name.asc()
+        .forUpdate()
+        .findList();
 
       Product firstProduct = list.get(0);
 
-      Query<Product> queryById =
-          Product.find.where()
-              .id.eq(firstProduct.getId())
-              .forUpdateNoWait()
-              .query();
+      Query<Product> queryById = new QProduct()
+        .id.eq(firstProduct.getId())
+        .forUpdateNoWait()
+        .query();
 
 //          Ebean.findNative(Product.class, "select * from product where id = :id for update nowait")
 //          .setParameter("id", firstProduct.getId());
@@ -76,26 +75,20 @@ public class ProductTest {
       assertThat(obtainWithLock(queryById)).isTrue();
 
       txn0.commit();
-
-    } finally {
-      txn0.end();
     }
   }
 
   private boolean obtainWithLock(Query<Product> queryById) {
-    Transaction otherTxn1 = Ebean.getDefaultServer().createTransaction();
-    try {
 
-      Product other = Ebean.getDefaultServer().extended().findOne(queryById, otherTxn1);
+    try (Transaction otherTxn1 = DB.getDefault().createTransaction()) {
+
+      Product other = DB.getDefault().extended().findOne(queryById, otherTxn1);
       other.getName();
       return true;
 
     } catch (AcquireLockException e) {
       log.info("Failed to obtain lock" + e.getMessage());
       return false;
-
-    } finally {
-      otherTxn1.end();
     }
   }
 }

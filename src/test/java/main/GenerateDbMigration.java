@@ -3,8 +3,6 @@ package main;
 import io.ebean.annotation.Platform;
 import io.ebean.dbmigration.DbMigration;
 
-import java.io.IOException;
-
 /**
  * Generate the DB Migration.
  */
@@ -13,7 +11,13 @@ public class GenerateDbMigration {
   public static void main(String[] args) throws Exception {
 
     DbMigration dbMigration = DbMigration.create();
-    dbMigration.setPlatform(Platform.POSTGRES);
+//    dbMigration.setPlatform(Platform.POSTGRES);
+//    dbMigration.setPathToResources("foo/bar");
+
+    dbMigration.addPlatform(Platform.POSTGRES, "pg");
+    dbMigration.addPlatform(Platform.H2, "h2");
+    dbMigration.addPlatform(Platform.MYSQL, "mysql");
+    dbMigration.addPlatform(Platform.CLICKHOUSE, "ch");
 
     // generate the migration ddl and xml
     dbMigration.generateMigration();

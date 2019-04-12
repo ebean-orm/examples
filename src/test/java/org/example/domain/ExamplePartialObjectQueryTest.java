@@ -1,6 +1,7 @@
 package org.example.domain;
 
 import org.example.ExampleBaseTestCase;
+import org.example.domain.query.QCustomer;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -10,8 +11,7 @@ public class ExamplePartialObjectQueryTest extends ExampleBaseTestCase {
   @Test
   public void test() {
 
-    Customer customer =
-       Customer.find
+    Customer customer = new QCustomer()
            .select("name, email")
            .id.eq(12)
            .findOne();
@@ -22,12 +22,9 @@ public class ExamplePartialObjectQueryTest extends ExampleBaseTestCase {
 
     Country nz = Country.find.ref("NZ");
 
-    List<Customer> customers =
-      Customer.find
-        .where()
+    List<Customer> customers = new QCustomer()
         .billingAddress.country.equalTo(nz)
         .select("name")
         .findList();
-
   }
 }
