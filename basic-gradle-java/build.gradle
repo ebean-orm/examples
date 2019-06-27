@@ -1,8 +1,8 @@
 
 plugins {
-    id("idea")
-    id("java")
-    id("io.ebean") version "11.39.1"
+    id('idea')
+    id('java')
+    id('io.ebean') version '11.40.1'
 }
 
 repositories {
@@ -17,15 +17,15 @@ compileJava   {
 
 dependencies {
 
-    compile("org.avaje.composite:logback:1.1")
+    compile 'org.avaje.composite:logback:1.1'
+    compile 'org.postgresql:postgresql:42.2.6'
+    compile 'io.ebean:ebean:11.39.1'
+    compile 'io.ebean:ebean-querybean:11.39.1'
 
-    compile("io.ebean:ebean:11.39.1")
-    compile("io.ebean:ebean-querybean:11.39.1")
+    annotationProcessor 'io.ebean:querybean-generator:11.39.3'
 
-    annotationProcessor("io.ebean:querybean-generator:11.39.3")
-
-    testImplementation("io.ebean.test:ebean-test-config:11.39.1")
-    testImplementation('org.avaje.composite:junit:1.1')
+    testImplementation 'io.ebean.test:ebean-test-config:11.39.1'
+    testImplementation 'org.avaje.composite:junit:1.1'
 }
 
 ebean {

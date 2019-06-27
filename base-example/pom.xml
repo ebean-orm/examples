@@ -145,7 +145,7 @@
         <configuration>
           <tiles>
             <tile>org.avaje.tile:java-compile:1.1</tile>
-            <tile>io.ebean.tile:enhancement:11.39.1</tile>
+            <tile>io.ebean.tile:enhancement:11.40.1</tile>
           </tiles>
         </configuration>
       </plugin>

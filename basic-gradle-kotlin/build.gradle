@@ -1,9 +1,9 @@
 
 plugins {
-  id("idea")
-  id("io.ebean") version "11.39.1"
-  id("org.jetbrains.kotlin.jvm") version "1.3.31"
-  id("org.jetbrains.kotlin.kapt") version "1.3.31"
+  id('idea')
+  id('io.ebean') version '11.40.1'
+  id('org.jetbrains.kotlin.jvm') version '1.3.31'
+  id('org.jetbrains.kotlin.kapt') version '1.3.31'
 }
 
 repositories {
@@ -13,30 +13,29 @@ repositories {
 
 dependencies {
 
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31"
-//  compile "org.slf4j:slf4j-api:1.7.25"
-  compile "org.avaje.composite:logback:1.1"
+  compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31'
+  compile 'org.avaje.composite:logback:1.1'
 
-  compile "io.ebean:ebean:11.39.1"
-  compile "io.ebean:ebean-querybean:11.39.1"
-  compile "org.postgresql:postgresql:42.2.2"
+  compile 'io.ebean:ebean:11.39.1'
+  compile 'io.ebean:ebean-querybean:11.39.1'
+  compile 'org.postgresql:postgresql:42.2.2'
 
-  kapt "io.ebean:kotlin-querybean-generator:11.39.3"
+  kapt 'io.ebean:kotlin-querybean-generator:11.39.3'
 
-  testCompile "io.ebean.test:ebean-test-config:11.39.1"
-  testCompile "org.avaje.composite:junit:1.1"
+  testCompile 'io.ebean.test:ebean-test-config:11.39.1'
+  testCompile 'org.avaje.composite:junit:1.1'
 }
 
 compileKotlin {
-  kotlinOptions.jvmTarget = "1.8"
+  kotlinOptions.jvmTarget = '1.8'
 }
 
 compileTestKotlin {
-  kotlinOptions.jvmTarget = "1.8"
+  kotlinOptions.jvmTarget = '1.8'
 }
 
 ebean {
-  debugLevel = 1
+  debugLevel = 0
 }
 
 test {
