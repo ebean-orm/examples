@@ -1,5 +1,7 @@
 package org.example.domain;
 
+import io.ebean.FetchGroup;
+import org.example.domain.query.QContact;
 import org.example.domain.query.QCustomer;
 import org.example.domain.query.QOrder;
 import org.example.domain.query.QOrderTotals;
@@ -14,10 +16,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrderTotalsTest {
 
+  private static final QCustomer cu = QCustomer.alias();
+  private static final QContact co = QContact.alias();
+
+  private static final FetchGroup<Customer> fetchGroup = QCustomer.forFetchGroup()
+    .select(cu.name, cu.comments)
+    .contacts.fetch(co.firstName, co.lastName)
+    .buildFetchGroup();
+
   @Test
   public void basicFind() {
 
     LoadExampleData.load();
+
+    final List<Customer> rob = new QCustomer()
+      .name.startsWith("Rob")
+      .select(fetchGroup)
+      .findList();
 
 
     //FetchGroup<Customer> fg = FetchGroup.of(Customer.class)
