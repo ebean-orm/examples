@@ -6,14 +6,21 @@ import org.example.domain.query.QOrder
 import org.junit.Test
 import java.math.BigDecimal
 import org.example.domain.query.QCustomer.Companion._alias as c
+import org.example.domain.query.QOrder.Companion._alias as or
 
 class CustomerTest {
+
+  val fg = QCustomer.forFetchGroup()
+    .select(c.name, c.creditLimit)
+    .orders.fetch(or.id, or.version)
+    .buildFetchGroup()
 
   @Test
   fun someQuery() {
 
     val customers = QCustomer()
-      .select(c.name)
+//      .select(c.name)
+      .select(fg)
       .name.equalToOrNull("Rob")
       .creditLimit.greaterThan(30_000)
       .orders.isNotEmpty
