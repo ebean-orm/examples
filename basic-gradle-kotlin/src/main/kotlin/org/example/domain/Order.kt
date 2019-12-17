@@ -6,12 +6,10 @@ import javax.persistence.*
 
 @Entity
 @Table(name="orders")
-class Order(
+class Order(customer: Customer) : BaseModel() {
 
   @ManyToOne
-  val customer: Customer
-
-) : BaseModel() {
+  val customer: Customer = customer
 
   var whenPlacedFor : OffsetDateTime? = null
 

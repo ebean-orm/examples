@@ -1,0 +1,5 @@
+Xentity-packages: org.example.domain
+Xquerybean-packages: org.example
+Xtransactional-packages: org.example
+Xprofile-location: true
+debug: 5

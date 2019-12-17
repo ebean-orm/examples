@@ -8,12 +8,10 @@ import javax.persistence.Entity
 import javax.persistence.OneToMany
 
 @Entity
-open class Customer(
+open class Customer(name: String) : BaseModel() {
 
   @Column(length = 150, unique = true)
-  var name: String
-
-) : BaseModel() {
+  var name: String = name
 
   var creditLimit: BigDecimal? = null
 
