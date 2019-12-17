@@ -42,5 +42,5 @@ public class LargeQueryWithFindIterateTest extends ExampleBaseTestCase {
         return processCount < 7;
       });
   }
-  
+
 }

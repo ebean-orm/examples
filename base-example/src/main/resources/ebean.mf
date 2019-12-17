@@ -1,4 +1,4 @@
-entity-packages: org.example.domain
-transactional-packages: org.example
-querybean-packages: org.example
+x-entity-packages: org.example.domain
+x-transactional-packages: org.example
+x-querybean-packages: org.example
 profile-location: true
