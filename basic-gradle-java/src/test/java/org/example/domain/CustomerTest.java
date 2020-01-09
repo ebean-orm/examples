@@ -23,8 +23,8 @@ public class CustomerTest {
     Customer customer = new Customer("Bar");
     customer.save();
 
-    URL resource = getClass().getResource("/ebean.mf");
-    assertNotNull(resource);
+//    URL resource = getClass().getResource("/ebean.mf");
+//    assertNotNull(resource);
 
     Customer found = new QCustomer()
       .name.istartsWith("ba")
@@ -63,16 +63,6 @@ public class CustomerTest {
         System.out.println(".. started on: " + it.getStartDate());
       });
 
-
-//    List<Customer> bats = Customer.find
-//      .query()
-//      .where()
-//      .startsWith("name", "BatOutOfHell")
-//      .gt("id", 1)
-//      .setLabel("batOutOfHell")
-//      .findList();
-
-//    System.out.println("bats:" + bats);
   }
 
 }

@@ -1,8 +1,7 @@
-
 plugins {
     id('idea')
     id('java')
-    id('io.ebean') version '11.43.2'
+    id('io.ebean') version '12.1.8'
 }
 
 repositories {
@@ -11,24 +10,24 @@ repositories {
 }
 
 compileJava   {
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
 }
 
 dependencies {
 
     compile 'org.avaje.composite:logback:1.1'
-    compile 'org.postgresql:postgresql:42.2.6'
+    compile 'org.postgresql:postgresql:42.2.9'
 
     // ebean and ebean-querybean
-    compile 'io.ebean:ebean:11.43.2'
-    compile 'io.ebean:ebean-querybean:11.43.2'
+    compile 'io.ebean:ebean:12.1.8'
+    compile 'io.ebean:ebean-querybean:12.1.8'
 
     // apt query bean generation
-    annotationProcessor 'io.ebean:querybean-generator:11.43.2'
+    annotationProcessor 'io.ebean:querybean-generator:12.1.8.2'
 
     testCompile 'org.avaje.composite:junit:1.1'
-    testImplementation 'io.ebean:ebean-test:11.43.2'
+    testImplementation 'io.ebean:ebean-test:12.1.8'
 }
 
 ebean {

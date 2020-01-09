@@ -1,4 +1,0 @@
-entity-packages: org.example.domain
-querybean-packages: org.example
-transactional-packages: org.example
-profile-location: true

@@ -20,7 +20,6 @@ public class CustomerFinder extends Finder<Long,Customer> {
   }
 
   public Customer findByName(String name) {
-
     return
       new QCustomer()
       .name.eq(name)
