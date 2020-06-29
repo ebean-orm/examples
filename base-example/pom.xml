@@ -11,20 +11,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-<!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
+    <!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
   </properties>
-
-<!--  <dependencyManagement>-->
-<!--    <dependencies>-->
-<!--      <dependency>-->
-<!--        <groupId>io.ebean</groupId>-->
-<!--        <artifactId>ebean-bom</artifactId>-->
-<!--        <version>1.1-SNAPSHOT</version>-->
-<!--        <type>pom</type>-->
-<!--        <scope>import</scope>-->
-<!--      </dependency>-->
-<!--    </dependencies>-->
-<!--  </dependencyManagement>-->
 
   <dependencies>
 
@@ -34,13 +22,6 @@
       <version>1.1</version>
     </dependency>
 
-    <!--<dependency>-->
-      <!--<groupId>oracle</groupId>-->
-      <!--<artifactId>oracle-jdbc</artifactId>-->
-      <!--<version>7.0</version>-->
-      <!--<scope>test</scope>-->
-    <!--</dependency>-->
-
     <!--
       Normally you only have the 1 JDBC driver
       but we are running and testing this against
@@ -49,7 +30,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.2.8</version>
+      <version>42.2.12</version>
     </dependency>
 
     <dependency>
@@ -69,21 +50,21 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean</artifactId>
-      <version>12.1.8</version>
+      <version>12.3.6</version>
     </dependency>
 
     <!-- support for query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-querybean</artifactId>
-      <version>12.1.8</version>
+      <version>12.3.6</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>querybean-generator</artifactId>
-      <version>12.1.8</version>
+      <version>12.3.6</version>
       <scope>provided</scope>
     </dependency>
 
@@ -113,7 +94,7 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-test</artifactId>
-      <version>12.1.8</version>
+      <version>12.3.6</version>
       <scope>test</scope>
     </dependency>
 
@@ -121,6 +102,13 @@
       <groupId>com.nuodb.jdbc</groupId>
       <artifactId>nuodb-jdbc</artifactId>
       <version>20.2.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mariadb.jdbc</groupId>
+      <artifactId>mariadb-java-client</artifactId>
+      <version>2.6.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -153,7 +141,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
+        <version>3.8.1</version>
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
@@ -165,12 +153,12 @@
       <plugin>
         <groupId>io.repaint.maven</groupId>
         <artifactId>tiles-maven-plugin</artifactId>
-        <version>2.16</version>
+        <version>2.17</version>
         <extensions>true</extensions>
         <configuration>
           <tiles>
             <tile>org.avaje.tile:java-compile:1.1</tile>
-            <tile>io.ebean.tile:enhancement:12.1.8</tile>
+            <tile>io.ebean.tile:enhancement:12.3.6</tile>
           </tiles>
         </configuration>
       </plugin>
@@ -180,10 +168,10 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.19.1</version>
         <!--<configuration>-->
-          <!--<argLine>-->
-            <!--&#45;&#45;add-modules java.xml.bind-->
-            <!--&#45;&#45;illegal-access=deny-->
-          <!--</argLine>-->
+        <!--<argLine>-->
+        <!--&#45;&#45;add-modules java.xml.bind-->
+        <!--&#45;&#45;illegal-access=deny-->
+        <!--</argLine>-->
         <!--</configuration>-->
         <executions>
           <execution>

@@ -18,7 +18,6 @@ import static org.testng.Assert.assertNotNull;
 
 public class InsertCustomerTest extends ExampleBaseTestCase {
 
-
   @Test
   public void test() {
 
@@ -31,7 +30,10 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
     // insert the customer
     customer.save();
 
-    Customer one = Customer.find.query().setId(customer.getId()).forUpdate().findOne();
+    final Customer one = new QCustomer()
+      .id.eq(customer.id)
+      .forUpdate()
+      .findOne();
 
     Customer fetched = Customer.find.byId(customer.getId());
 
@@ -41,6 +43,9 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
     assertEquals("Robin", fetched.getName());
     assertEquals("Robin", fetched2.getName());
     assertEquals(customer.getRegistered(), fetched2.getRegistered());
+
+    fetched2.setRegistered(LocalDate.now().minusDays(3));
+    fetched2.save();
   }
 
   /**
@@ -76,14 +81,14 @@ public class InsertCustomerTest extends ExampleBaseTestCase {
       transaction.setPersistCascade(false);
 
       // extra control over jdbc batching for this transaction
-      transaction.setBatchGetGeneratedKeys(false);
+      transaction.setGetGeneratedKeys(false);
       transaction.setBatchMode(true);
       transaction.setBatchSize(20);
 
       Customer customer = new Customer("Roberto2");
       customer.save();
 
-      transaction.setBatchFlushOnQuery(false);
+      transaction.setFlushOnQuery(false);
 
       Customer otherCustomer = new Customer("Franko2");
       otherCustomer.save();
