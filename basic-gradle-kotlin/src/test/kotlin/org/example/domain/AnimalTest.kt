@@ -17,7 +17,6 @@ class AnimalTest {
     ethan.phone = "021354879"
     ethan.save()
 
-
     val pepper = Animal("pepper", allie)
     pepper.age = 2
     pepper.notes = "squashed by garage door"
