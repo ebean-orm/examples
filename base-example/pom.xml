@@ -11,7 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
-    <!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
+<!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
   </properties>
 
   <dependencies>
