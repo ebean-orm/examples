@@ -14,8 +14,6 @@ import static org.example.domain.query.QCustomer.Alias.id;
 
 public class CustomerTest extends ExampleBaseTestCase {
 
-  private Customer jack = new Customer("Jack");
-
   /**
    * Even though customer name is final Ebean can build a reference
    * bean only populating the id property.
@@ -23,6 +21,8 @@ public class CustomerTest extends ExampleBaseTestCase {
   @Test
   public void insert() {
 
+    Customer jack = new Customer("Jack");
+    jack.setPhoneNumber(new PhoneNumber("02134234"));
     jack.save();
 
     // reference bean only has Id populated
@@ -38,12 +38,16 @@ public class CustomerTest extends ExampleBaseTestCase {
     assertThat(beanState.getLoadedProps()).contains("id", "name", "version");
   }
 
-  @Test(dependsOnMethods = "insert")
+  @Test//(dependsOnMethods = "insert")
   public void partialLoad() {
 
+    Customer jim = new Customer("Jim");
+    jim.setPhoneNumber(new PhoneNumber("234"));
+    jim.save();
+
     Customer found = new QCustomer()
-      .name.equalTo("Jack")
-      .id.eq(jack.getId())
+      .name.equalTo("Jim")
+      .id.eq(jim.getId())
       .select(id)
       .findOne();
 
@@ -54,7 +58,9 @@ public class CustomerTest extends ExampleBaseTestCase {
 
     // invoke lazy loading
     String name = found.getName();
-    assertThat(name).isEqualTo("Jack");
+    assertThat(name).isEqualTo("Jim");
+    assertThat(found.getPhoneNumber().getValue()).isEqualTo("234");
+
     assertThat(beanState.getLoadedProps()).contains("id", "name", "inactive");
   }
 }

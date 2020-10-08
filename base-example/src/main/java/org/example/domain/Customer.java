@@ -6,6 +6,7 @@ import org.example.domain.finder.CustomerFinder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -21,14 +22,14 @@ import java.util.UUID;
 
 /**
  * Customer entity bean.
- *
+ * <p>
  * This example shows an entity bean without a default constructor. The name property is
  * expected to be final and non-null. Note the InsertCustomerTest.testRef() test showing
  * loading the partially loaded bean.
  */
 @DbComment("Customer table general comment")
 @Entity
-@Table(name="customer")
+@Table(name = "customer")
 public class Customer extends BaseModel {
 
   public static final CustomerFinder find = new CustomerFinder();
@@ -44,21 +45,26 @@ public class Customer extends BaseModel {
   LocalDate registered;
 
   @DbArray // ARRAY
-  List<UUID> uids = new ArrayList<>();
+    List<UUID> uids = new ArrayList<>();
+
+  @Embedded
+  SomeEmbedd some;
+
+  PhoneNumber phoneNumber;
 
   @Lob
   String comments;
 
-  @ManyToOne(cascade=CascadeType.PERSIST)
+  @ManyToOne(cascade = CascadeType.PERSIST)
   Address billingAddress;
 
-  @ManyToOne(cascade=CascadeType.PERSIST)
+  @ManyToOne(cascade = CascadeType.PERSIST)
   Address shippingAddress;
 
-  @OneToMany(mappedBy="customer", cascade=CascadeType.PERSIST)
+  @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
   List<Contact> contacts;
 
-  @OneToMany(mappedBy="customer")
+  @OneToMany(mappedBy = "customer")
   List<Order> orders;
 
   InetAddress lastAddr;
@@ -93,6 +99,14 @@ public class Customer extends BaseModel {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public PhoneNumber getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(PhoneNumber phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
   public LocalDate getRegistered() {

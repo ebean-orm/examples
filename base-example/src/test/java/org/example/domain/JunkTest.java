@@ -1,7 +1,9 @@
 package org.example.domain;
 
 import io.ebean.FetchGroup;
+import io.ebean.annotation.Transactional;
 import org.example.domain.query.QCustomer;
+import org.example.domain.query.QOrder;
 import org.testng.annotations.Test;
 
 import static org.example.domain.query.QContact.Alias.email;
@@ -16,13 +18,20 @@ public class JunkTest {
     .contacts.fetch(email)
     .buildFetchGroup();
 
+  private final int count;
+
+  JunkTest() {
+    count = new QOrder()
+      .findCount();
+  }
   @Test
+  @Transactional
   public void doIt() {
 
     new QCustomer()
       .select(fetchGroup)
       .findList();
 
-    System.out.println("here");
+    System.out.println("here v2");
   }
 }
