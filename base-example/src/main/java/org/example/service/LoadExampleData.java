@@ -1,7 +1,6 @@
 package org.example.service;
 
-import io.ebean.Ebean;
-import io.ebean.EbeanServer;
+import io.ebean.DB;
 import io.ebean.Transaction;
 import org.example.domain.Address;
 import org.example.domain.Contact;
@@ -21,8 +20,6 @@ import java.util.List;
 public class LoadExampleData {
 
   private static final Logger log = LoggerFactory.getLogger(LoadExampleData.class);
-
-  private static EbeanServer server = Ebean.getServer(null);
 
   private static LoadExampleData data = new LoadExampleData();
 
@@ -45,7 +42,7 @@ public class LoadExampleData {
       return;
     }
 
-    try (Transaction transaction = Ebean.beginTransaction()) {
+    try (Transaction transaction = DB.beginTransaction()) {
       try {
         deleteAll();
         insertReference();
@@ -65,28 +62,28 @@ public class LoadExampleData {
 
 
   private void deleteAll() {
-    Ebean.execute(() -> {
+    DB.execute(() -> {
 
       // Ebean.currentTransaction().setBatchMode(false);
 
       // orm update use bean name and bean properties
       // server.createUpdate(OrderShipment.class, "delete from orderShipment").execute();
 
-      server.createUpdate(OrderDetail.class, "delete from orderDetail").execute();
-      server.createUpdate(Order.class, "delete from order").execute();
-      server.createUpdate(Contact.class, "delete from contact").execute();
-      server.createUpdate(Customer.class, "delete from Customer").execute();
-      server.createUpdate(Address.class, "delete from address").execute();
+      DB.createUpdate(OrderDetail.class, "delete from orderDetail").execute();
+      DB.createUpdate(Order.class, "delete from order").execute();
+      DB.createUpdate(Contact.class, "delete from contact").execute();
+      DB.createUpdate(Customer.class, "delete from Customer").execute();
+      DB.createUpdate(Address.class, "delete from address").execute();
 
       // sql update uses table and column names
-      server.createSqlUpdate("delete from country").execute();
-      server.createSqlUpdate("delete from product").execute();
+      DB.sqlUpdate("delete from country").execute();
+      DB.sqlUpdate("delete from product").execute();
     });
   }
 
   private void insertCountries() {
 
-    server.execute(() -> {
+    DB.execute(() -> {
       new Country("NZ", "New Zealand").save();
       new Country("AU", "Australia").save();
     });
@@ -101,12 +98,12 @@ public class LoadExampleData {
     products.add(new Product("C002", "Computer"));
     products.add(new Product("C003", "Printer"));
 
-    server.saveAll(products);
+    DB.saveAll(products);
   }
 
   private void insertTestCustAndOrders() {
 
-    Ebean.execute(() -> {
+    DB.execute(() -> {
         Customer cust1 = insertCustomer("Rob");
         Customer cust2 = insertCustomerNoAddress();
         insertCustomerFiona();
@@ -145,7 +142,7 @@ public class LoadExampleData {
     c.addContact(createContact("Fiona", "Black"));
     c.addContact(createContact("Tracy", "Red"));
 
-    Ebean.save(c);
+    DB.save(c);
     return c;
   }
 
@@ -162,7 +159,7 @@ public class LoadExampleData {
 
     Customer c = createCustomer(name, "15 Kumera Way", "Bos town", 1);
 
-    Ebean.save(c);
+    DB.save(c);
     return c;
   }
 
@@ -173,13 +170,13 @@ public class LoadExampleData {
     c.addContact(createContact("Jill", "Hill"));
     c.addContact(createContact("Mac", "Hill"));
 
-    Ebean.save(c);
+    DB.save(c);
     return c;
   }
 
   private static Customer insertCustomer(String name) {
     Customer c = createCustomer(name, "1 Banana St", "P.O.Box 1234", 1);
-    Ebean.save(c);
+    DB.save(c);
     return c;
   }
 
@@ -207,7 +204,7 @@ public class LoadExampleData {
       billingAddr.setLine1(billingStreet);
       billingAddr.setLine2("St Lukes");
       billingAddr.setCity("Auckland");
-      billingAddr.setCountry(Ebean.getReference(Country.class, "NZ"));
+      billingAddr.setCountry(DB.getReference(Country.class, "NZ"));
 
       c.setBillingAddress(billingAddr);
     }
@@ -232,7 +229,7 @@ public class LoadExampleData {
 
     //order.addShipment(new OrderShipment());
 
-    Ebean.save(order);
+    DB.save(order);
     return order;
   }
 
@@ -250,7 +247,7 @@ public class LoadExampleData {
 
     //order.addShipment(new OrderShipment());
 
-    Ebean.save(order);
+    DB.save(order);
   }
 
   private void createOrder3(Customer customer) {
@@ -270,12 +267,12 @@ public class LoadExampleData {
 
     //order.addShipment(new OrderShipment());
 
-    Ebean.save(order);
+    DB.save(order);
   }
 
   private void createOrder4(Customer customer) {
 
     Order order = new Order(customer);
-    Ebean.save(order);
+    DB.save(order);
   }
 }

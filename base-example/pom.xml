@@ -11,6 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.release>11</java.release>
+    <ebean.version>12.5.0</ebean.version>
 <!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
   </properties>
 
@@ -21,13 +22,6 @@
       <artifactId>logback</artifactId>
       <version>1.1</version>
     </dependency>
-
-    <!--<dependency>-->
-      <!--<groupId>oracle</groupId>-->
-      <!--<artifactId>oracle-jdbc</artifactId>-->
-      <!--<version>7.0</version>-->
-      <!--<scope>test</scope>-->
-    <!--</dependency>-->
 
     <!--
       Normally you only have the 1 JDBC driver
@@ -56,22 +50,22 @@
 
     <dependency>
       <groupId>io.ebean</groupId>
-      <artifactId>ebean</artifactId>
-      <version>12.4.2</version>
+      <artifactId>ebean-core</artifactId>
+      <version>${ebean.version}</version>
     </dependency>
 
     <!-- support for query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-querybean</artifactId>
-      <version>12.4.2</version>
+      <version>${ebean.version}</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>querybean-generator</artifactId>
-      <version>12.4.2</version>
+      <version>${ebean.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -101,7 +95,7 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-test</artifactId>
-      <version>12.4.2</version>
+      <version>${ebean.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -109,6 +103,13 @@
       <groupId>com.nuodb.jdbc</groupId>
       <artifactId>nuodb-jdbc</artifactId>
       <version>20.2.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mariadb.jdbc</groupId>
+      <artifactId>mariadb-java-client</artifactId>
+      <version>2.6.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -158,7 +159,7 @@
         <configuration>
           <tiles>
 <!--            <tile>org.avaje.tile:java-compile:1.1</tile>-->
-            <tile>io.ebean.tile:enhancement:12.4.2</tile>
+            <tile>io.ebean.tile:enhancement:12.4.3</tile>
           </tiles>
         </configuration>
       </plugin>
