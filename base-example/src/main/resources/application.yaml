@@ -2,13 +2,16 @@
 ## load external properties
 #load:
 #  properties: ${user.home}/config/my-application.properties
+ebean:
+  dbSchema: ${db.username:my_app7}
+  migration.run: true
 
 datasource:
   db:
-    username: sa
-    password: sa
-    url: jdbc:h2:mem:tests
-    driver: org.h2.Driver
+    username: ${db.username:my_app7}
+    password: ${db.password:test}
+    url: ${db.url:jdbc:postgresql://localhost:6432/my_app7}
+
 
 #ebean:
 #  docstore:

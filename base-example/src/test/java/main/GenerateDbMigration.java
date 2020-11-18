@@ -23,6 +23,7 @@ public class GenerateDbMigration {
 //    dbMigration.addPlatform(Platform.CLICKHOUSE, "ch");
 
     // generate the migration ddl and xml
+//    dbMigration.setGeneratePendingDrop("1.3");
     dbMigration.generateMigration();
   }
 }
