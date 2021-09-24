@@ -1,29 +1,10 @@
 
-buildscript {
-  ext.kotlin_version = '1.5.31'
-  repositories {
-    mavenLocal()
-    mavenCentral()
-    gradlePluginPortal()
-  }
-  dependencies {
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath "io.ebean:ebean-gradle-plugin:12.12.0"
-  }
+plugins {
+  id('idea')
+  id('io.ebean') version '12.12.0'
+  id('org.jetbrains.kotlin.jvm') version '1.5.31'
+  id('org.jetbrains.kotlin.kapt') version '1.5.31'
 }
-
-apply plugin: 'idea'
-
-apply plugin: 'org.jetbrains.kotlin.jvm'
-apply plugin: 'org.jetbrains.kotlin.kapt'
-apply plugin: 'io.ebean'
-
-//plugins {
-//  id('idea')
-//  id('io.ebean') version '12.1.8'
-//  id('org.jetbrains.kotlin.jvm') version '1.3.61'
-//  id('org.jetbrains.kotlin.kapt') version '1.3.61'
-//}
 
 repositories {
   mavenLocal()
@@ -32,17 +13,21 @@ repositories {
 
 dependencies {
 
-  compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31'
-  compile 'org.avaje.composite:logback:1.1'
+  implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31'
+  implementation 'org.avaje.composite:logback:1.1'
 
-  compile 'io.ebean:ebean:12.12.0'
-  compile 'io.ebean:ebean-querybean:12.12.0'
-  compile 'org.postgresql:postgresql:42.2.24'
+  implementation 'io.ebean:ebean:12.12.0'
+  implementation 'io.ebean:ebean-querybean:12.12.0'
+  implementation 'org.postgresql:postgresql:42.2.24'
 
   kapt 'io.ebean:kotlin-querybean-generator:12.12.0'
 
-  testCompile 'io.ebean:ebean-test:12.12.0'
-  testCompile 'io.avaje:junit:1.0'
+  testImplementation 'io.ebean:ebean-test:12.12.0'
+  testImplementation 'io.avaje:junit:1.0'
+}
+
+test {
+  useJUnitPlatform()
 }
 
 compileKotlin {

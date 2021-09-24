@@ -2,29 +2,22 @@ package org.example.domain;
 
 
 import org.example.domain.query.QCustomer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
-public class CustomerTest {
+class CustomerTest {
 
   @Test
-  public void queryBean() {
+  void queryBean() {
 
     Customer customer = new Customer("Bar");
     customer.save();
-
-//    URL resource = getClass().getResource("/ebean.mf");
-//    assertNotNull(resource);
 
     Customer found = new QCustomer()
       .name.istartsWith("ba")
@@ -34,15 +27,14 @@ public class CustomerTest {
   }
 
   @Test
-  public void saveAndFind() {
+  void saveAndFind() {
 
     Customer customer = new Customer("hello");
     customer.setStartDate(LocalDate.now());
     customer.setComments("What is this good for?");
-
     customer.save();
 
-    assertNotNull(customer.getId());
+    assertThat(customer.getId()).isGreaterThan(0);
 
     Optional<Customer> found = Customer.find.byIdOptional(customer.getId());
 

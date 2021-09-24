@@ -1,40 +1,41 @@
 plugins {
-    id('idea')
-    id('java')
-    id('io.ebean') version '12.1.8'
+  id('idea')
+  id('java')
+  id('io.ebean') version '12.12.0'
 }
 
 repositories {
-    mavenLocal()
-    mavenCentral()
+  mavenLocal()
+  mavenCentral()
 }
 
-compileJava   {
-    sourceCompatibility = '11'
-    targetCompatibility = '11'
+compileJava {
+  sourceCompatibility = '11'
+  targetCompatibility = '11'
 }
 
 dependencies {
 
-    compile 'org.avaje.composite:logback:1.1'
-    compile 'org.postgresql:postgresql:42.2.9'
+  implementation 'org.avaje.composite:logback:1.1'
+  implementation 'org.postgresql:postgresql:42.2.24'
+  implementation 'io.ebean:ebean:12.12.0'
 
-    // ebean and ebean-querybean
-    compile 'io.ebean:ebean:12.1.8'
-    compile 'io.ebean:ebean-querybean:12.1.8'
+  // apt query bean generation
+  annotationProcessor 'io.ebean:querybean-generator:12.12.0'
 
-    // apt query bean generation
-    annotationProcessor 'io.ebean:querybean-generator:12.1.8.2'
-
-    testCompile 'org.avaje.composite:junit:1.1'
-    testImplementation 'io.ebean:ebean-test:12.1.8'
-}
-
-ebean {
-    debugLevel = 0 //0 - 9
+  testImplementation 'io.avaje:junit:1.0'
+  testImplementation 'io.ebean:ebean-test:12.12.0'
 }
 
 test {
-    testLogging.showStandardStreams = true
-    testLogging.exceptionFormat = 'full'
+  useJUnitPlatform()
+}
+
+ebean {
+  debugLevel = 0 //0 - 9
+}
+
+test {
+  testLogging.showStandardStreams = true
+  testLogging.exceptionFormat = 'full'
 }
