@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
+    <changeSet type="apply">
+        <createTable name="animal" pkName="pk_animal">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="name" type="varchar" notnull="true"/>
+            <column name="owner_id" type="bigint" notnull="true" references="owner.id" foreignKeyName="fk_animal_owner_id" foreignKeyIndex="ix_animal_owner_id"/>
+            <column name="age" type="integer" notnull="true"/>
+            <column name="type" type="varchar"/>
+            <column name="notes" type="varchar"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="customer" pkName="pk_customer">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="name" type="varchar(150)" notnull="true" unique="uq_customer_name"/>
+            <column name="credit_limit" type="decimal"/>
+            <column name="notes" type="varchar(500)"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="orders" pkName="pk_orders">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="customer_id" type="bigint" notnull="true" references="customer.id" foreignKeyName="fk_orders_customer_id" foreignKeyIndex="ix_orders_customer_id"/>
+            <column name="when_placed_for" type="timestamp"/>
+            <column name="when_invoiced" type="timestamp"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="order_line" pkName="pk_order_line">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="product_id" type="bigint" notnull="true" references="product.id" foreignKeyName="fk_order_line_product_id" foreignKeyIndex="ix_order_line_product_id"/>
+            <column name="quantity" type="integer" notnull="true"/>
+            <column name="order_id" type="bigint" notnull="true" references="orders.id" foreignKeyName="fk_order_line_order_id" foreignKeyIndex="ix_order_line_order_id"/>
+            <column name="description" type="varchar"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="owner" pkName="pk_owner">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="name" type="varchar" notnull="true"/>
+            <column name="phone" type="varchar"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="product" pkName="pk_product">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="sku" type="varchar(20)" notnull="true"/>
+            <column name="name" type="varchar(100)" notnull="true"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+    </changeSet>
+</migration>
