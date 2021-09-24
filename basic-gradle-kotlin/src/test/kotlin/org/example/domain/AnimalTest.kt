@@ -1,7 +1,7 @@
 package org.example.domain
 
 import org.example.domain.query.QAnimal
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 
 class AnimalTest {

@@ -2,7 +2,7 @@ package org.example.service
 
 import org.assertj.core.api.Assertions.assertThat
 import org.example.domain.query.QOrder
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 internal class HelloServiceTest {
 

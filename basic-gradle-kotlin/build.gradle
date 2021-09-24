@@ -42,7 +42,7 @@ dependencies {
   kapt 'io.ebean:kotlin-querybean-generator:12.12.0'
 
   testCompile 'io.ebean:ebean-test:12.12.0'
-  testCompile 'org.avaje.composite:junit:1.1'
+  testCompile 'io.avaje:junit:1.0'
 }
 
 compileKotlin {

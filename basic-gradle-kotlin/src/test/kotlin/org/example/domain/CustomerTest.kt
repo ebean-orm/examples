@@ -3,7 +3,7 @@ package org.example.domain
 import org.assertj.core.api.Assertions.assertThat
 import org.example.domain.query.QCustomer
 import org.example.domain.query.QOrder
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import java.math.BigDecimal
 import org.example.domain.query.QCustomer.Companion._alias as c
 import org.example.domain.query.QOrder.Companion._alias as or
