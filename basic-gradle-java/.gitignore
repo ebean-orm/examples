@@ -4,4 +4,3 @@ generated/
 .gradle/
 .idea/
 *.iml
-gradle/wrapper/
