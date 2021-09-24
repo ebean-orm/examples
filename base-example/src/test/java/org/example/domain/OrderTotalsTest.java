@@ -6,7 +6,7 @@ import org.example.domain.query.QCustomer;
 import org.example.domain.query.QOrder;
 import org.example.domain.query.QOrderTotals;
 import org.example.service.LoadExampleData;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;

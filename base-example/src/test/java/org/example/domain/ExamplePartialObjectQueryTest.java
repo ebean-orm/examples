@@ -2,7 +2,7 @@ package org.example.domain;
 
 import org.example.ExampleBaseTestCase;
 import org.example.domain.query.QCustomer;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 

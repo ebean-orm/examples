@@ -18,10 +18,22 @@
   <dependencies>
 
     <dependency>
-      <groupId>org.avaje.composite</groupId>
-      <artifactId>logback</artifactId>
-      <version>1.1</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.32</version>
     </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.6</version>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>org.avaje.composite</groupId>-->
+<!--      <artifactId>logback</artifactId>-->
+<!--      <version>1.1</version>-->
+<!--    </dependency>-->
 
     <!--
       Normally you only have the 1 JDBC driver
@@ -79,56 +91,16 @@
     </dependency>
 
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.32</version>
-    </dependency>
-
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.6</version>
-    </dependency>
-
-    <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-test</artifactId>
       <version>${ebean.version}</version>
       <scope>test</scope>
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>com.nuodb.jdbc</groupId>-->
-<!--      <artifactId>nuodb-jdbc</artifactId>-->
-<!--      <version>20.2.0</version>-->
-<!--      <scope>test</scope>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--      <groupId>org.mariadb.jdbc</groupId>-->
-<!--      <artifactId>mariadb-java-client</artifactId>-->
-<!--      <version>2.6.0</version>-->
-<!--      <scope>test</scope>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--      <groupId>org.xerial</groupId>-->
-<!--      <artifactId>sqlite-jdbc</artifactId>-->
-<!--      <version>3.15.1</version>-->
-<!--      <scope>test</scope>-->
-<!--    </dependency>-->
-
     <dependency>
-      <groupId>junit</groupId>
+      <groupId>io.avaje</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.avaje.composite</groupId>
-      <artifactId>composite-testing</artifactId>
-      <version>3.1</version>
+      <version>1.0</version>
       <scope>test</scope>
     </dependency>
 

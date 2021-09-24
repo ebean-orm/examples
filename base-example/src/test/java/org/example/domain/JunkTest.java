@@ -4,7 +4,7 @@ import io.ebean.FetchGroup;
 import io.ebean.annotation.Transactional;
 import org.example.domain.query.QCustomer;
 import org.example.domain.query.QOrder;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.example.domain.query.QContact.Alias.email;
 import static org.example.domain.query.QCustomer.Alias.inactive;

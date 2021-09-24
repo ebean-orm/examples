@@ -6,9 +6,10 @@ import io.ebean.Query;
 import io.ebean.Transaction;
 import org.example.domain.query.QProduct;
 import org.example.service.LoadExampleData;
+import org.junit.jupiter.api.Disabled;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -36,7 +37,8 @@ public class ProductTest {
   }
 
   // Run using Postgres with forUpdateNoWait
-  @Test(enabled = false)
+  @Disabled
+  @Test
   public void checkLockRelease() {
 
     LoadExampleData.load();

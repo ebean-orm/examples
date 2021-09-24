@@ -3,7 +3,7 @@ package org.example.domain;
 import io.ebean.annotation.Transactional;
 import org.example.ExampleBaseTestCase;
 import org.example.domain.query.QCustomer;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicLong;
 

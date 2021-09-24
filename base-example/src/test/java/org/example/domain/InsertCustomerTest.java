@@ -6,15 +6,15 @@ import io.ebean.test.LoggedSql;
 import org.example.ExampleBaseTestCase;
 import org.example.domain.query.QCustomer;
 import org.example.service.LoadExampleData;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class InsertCustomerTest extends ExampleBaseTestCase {
 
