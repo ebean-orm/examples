@@ -50,14 +50,12 @@ public class OrderTotalsTest {
     jack.save();
 
 
-    Timestamp now = new Timestamp(System.currentTimeMillis());
-
     Country nz = Country.find.ref("NZ");
 
     int rows = new QCustomer()
       .name.startsWith("Rob")
       .asUpdate()
-        .set("registered", now)
+        .set("registered", LocalDate.now())
         .update();
 
 

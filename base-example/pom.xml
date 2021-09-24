@@ -11,7 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.release>11</java.release>
-    <ebean.version>12.6.0</ebean.version>
+    <ebean.version>12.12.0</ebean.version>
 <!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
   </properties>
 
@@ -31,7 +31,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.2.18</version>
+      <version>42.2.24</version>
     </dependency>
 
 <!--    <dependency>-->
@@ -50,27 +50,14 @@
 
     <dependency>
       <groupId>io.ebean</groupId>
-      <artifactId>ebean-datasource</artifactId>
-      <version>7.0</version>
+      <artifactId>ebean</artifactId>
+      <version>${ebean.version}</version>
     </dependency>
 
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-migration</artifactId>
-      <version>12.2.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.ebean</groupId>
-      <artifactId>ebean-core</artifactId>
-      <version>${ebean.version}</version>
-    </dependency>
-
-    <!-- support for query beans -->
-    <dependency>
-      <groupId>io.ebean</groupId>
-      <artifactId>ebean-querybean</artifactId>
-      <version>${ebean.version}</version>
+      <version>12.12.0</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
@@ -89,19 +76,18 @@
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
       <version>2.0.1.Final</version>
-      <!--<version>1.0.0.GA</version>-->
     </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.30</version>
+      <version>1.7.32</version>
     </dependency>
 
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
+      <version>1.2.6</version>
     </dependency>
 
     <dependency>
@@ -135,7 +121,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.13.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
 
@@ -166,12 +152,12 @@
       <plugin>
         <groupId>io.repaint.maven</groupId>
         <artifactId>tiles-maven-plugin</artifactId>
-        <version>2.18</version>
+        <version>2.24</version>
         <extensions>true</extensions>
         <configuration>
           <tiles>
 <!--            <tile>org.avaje.tile:java-compile:1.1</tile>-->
-            <tile>io.ebean.tile:enhancement:12.6.0</tile>
+            <tile>io.ebean.tile:enhancement:12.12.0</tile>
           </tiles>
         </configuration>
       </plugin>
