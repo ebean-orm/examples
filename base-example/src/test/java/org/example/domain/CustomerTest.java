@@ -6,8 +6,6 @@ import org.example.ExampleBaseTestCase;
 import org.example.domain.query.QCustomer;
 import org.junit.jupiter.api.Test;
 
-import java.util.Set;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.example.domain.query.QCustomer.Alias.id;
@@ -29,13 +27,13 @@ public class CustomerTest extends ExampleBaseTestCase {
     Customer refBean = Customer.find.ref(jack.getId());
 
     // only Id property is loaded
-    BeanState beanState = DB.getBeanState(refBean);
-    assertThat(beanState.getLoadedProps()).containsExactly("id");
+    BeanState beanState = DB.beanState(refBean);
+    assertThat(beanState.loadedProps()).containsExactly("id");
 
     // invoke lazy loading
     String name = refBean.getName();
     assertThat(name).isEqualTo("Jack");
-    assertThat(beanState.getLoadedProps()).contains("id", "name", "version");
+    assertThat(beanState.loadedProps()).contains("id", "name", "version");
   }
 
   @Test//(dependsOnMethods = "insert")
@@ -52,15 +50,13 @@ public class CustomerTest extends ExampleBaseTestCase {
       .findOne();
 
     assertThat(found).isNotNull();
-    BeanState beanState = DB.getBeanState(found);
-    Set<String> loadedProps = beanState.getLoadedProps();
-    assertThat(loadedProps).containsExactly("id", "contacts", "orders");
+    BeanState beanState = DB.beanState(found);
+    assertThat(beanState.loadedProps()).containsExactly("id", "contacts", "orders");
 
     // invoke lazy loading
     String name = found.getName();
     assertThat(name).isEqualTo("Jim");
     assertThat(found.getPhoneNumber().getValue()).isEqualTo("234");
-
-    assertThat(beanState.getLoadedProps()).contains("id", "name", "inactive");
+    assertThat(beanState.loadedProps()).contains("id", "name", "inactive");
   }
 }

@@ -11,7 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.release>11</java.release>
-    <ebean.version>12.12.0</ebean.version>
+    <ebean.version>12.12.3</ebean.version>
 <!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
   </properties>
 
@@ -43,7 +43,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.2.24</version>
+      <version>42.3.0</version>
     </dependency>
 
 <!--    <dependency>-->
