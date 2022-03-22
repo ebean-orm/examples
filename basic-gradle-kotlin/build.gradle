@@ -17,7 +17,7 @@ dependencies {
   implementation 'org.avaje.composite:logback:1.1'
 
   implementation 'io.ebean:ebean:12.16.0'
-  implementation 'org.postgresql:postgresql:42.3.0'
+  implementation 'org.postgresql:postgresql:42.3.3'
 
   kapt 'io.ebean:kotlin-querybean-generator:12.16.0'
 
