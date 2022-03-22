@@ -10,14 +10,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.example.domain.query.QCustomer.Alias.id;
 
-public class CustomerTest extends ExampleBaseTestCase {
+class CustomerTest extends ExampleBaseTestCase {
 
   /**
    * Even though customer name is final Ebean can build a reference
    * bean only populating the id property.
    */
   @Test
-  public void insert() {
+  void insert() {
 
     Customer jack = new Customer("Jack");
     jack.setPhoneNumber(new PhoneNumber("02134234"));
@@ -36,8 +36,8 @@ public class CustomerTest extends ExampleBaseTestCase {
     assertThat(beanState.loadedProps()).contains("id", "name", "version");
   }
 
-  @Test//(dependsOnMethods = "insert")
-  public void partialLoad() {
+  @Test
+  void partialLoad() {
 
     Customer jim = new Customer("Jim");
     jim.setPhoneNumber(new PhoneNumber("234"));

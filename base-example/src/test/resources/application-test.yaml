@@ -10,15 +10,15 @@ ebean:
 #    shutdown: remove # stop | remove
     platform: postgres # h2, postgres, mysql, oracle, sqlserver, sqlite
     ddlMode: dropCreate # none | dropCreate | create | migration | createOnly | migrationDropCreate
-    dbName: my_app
+    dbName: my_app9
 #    mysql:
 #      version: 5.5
 #      containerName: ms55
 #      collation: default
 #      characterSet: utf8mb4
 
-    postgres:
-      extensions: uuid-ossp,hstore,pgcrypto
+#    postgres:
+#      extensions: uuid-ossp,hstore,pgcrypto
 
 
 #ebean.foo.ddl:

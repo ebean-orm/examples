@@ -18,6 +18,6 @@
     <logger name="io.ebean.SUM" level="TRACE"/>
     <logger name="io.ebean.DDL" level="INFO"/>
 
-<!--    <logger name="io.ebean.docker" level="TRACE"/>-->
+    <logger name="io.ebean.docker" level="TRACE"/>
 
 </configuration>
