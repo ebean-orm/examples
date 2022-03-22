@@ -10,7 +10,7 @@ import org.example.domain.query.QOrder.Companion._alias as or
 
 class CustomerTest {
 
-  val fg = QCustomer.forFetchGroup()
+  private val fetchGroup = QCustomer.forFetchGroup()
     .select(c.name, c.creditLimit)
     .orders.fetch(or.id, or.version)
     .buildFetchGroup()
@@ -19,10 +19,9 @@ class CustomerTest {
   fun someQuery() {
 
     val customers = QCustomer()
-//      .select(c.name)
-      .select(fg)
-      .name.equalToOrNull("Rob")
-      .creditLimit.greaterThan(30_000)
+      .select(fetchGroup)
+      .name.eqOrNull("Rob")
+      .creditLimit.gt(30_000)
       .orders.isNotEmpty
       .findList()
 
@@ -39,7 +38,17 @@ class CustomerTest {
       .name.eq("Rob")
       .findOne()
 
-    assertThat(customer?.name).isEqualTo("Rob")
+    customer?.orders?.size
+    val nm = customer?.name ?: "asd"
+
+    val customerEmpty = QCustomer()
+      .select(c.name)
+      .name.eq("Rob")
+      .findOneOrEmpty()
+
+    customerEmpty.ifPresent {
+      println(it.name)
+    }
 
     val rob = Customer.findByName("Rob") ?: throw IllegalStateException("no rob")
 
