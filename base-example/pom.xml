@@ -10,8 +10,9 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.release>11</java.release>
-    <ebean.version>12.16.0</ebean.version>
+    <java.release>17</java.release>
+    <ebean.version>13.0.0</ebean.version>
+    <surefire.useModulePath>false</surefire.useModulePath>
 <!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
   </properties>
 
@@ -29,12 +30,6 @@
       <version>1.2.11</version>
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>org.avaje.composite</groupId>-->
-<!--      <artifactId>logback</artifactId>-->
-<!--      <version>1.1</version>-->
-<!--    </dependency>-->
-
     <!--
       Normally you only have the 1 JDBC driver
       but we are running and testing this against
@@ -49,7 +44,7 @@
 <!--    <dependency>-->
 <!--      <groupId>com.microsoft.sqlserver</groupId>-->
 <!--      <artifactId>mssql-jdbc</artifactId>-->
-<!--      <version>6.2.2.jre8</version>-->
+<!--      <version>9.4.0.jre8</version>-->
 <!--      <scope>test</scope>-->
 <!--    </dependency>-->
 
@@ -62,14 +57,32 @@
 
     <dependency>
       <groupId>io.ebean</groupId>
-      <artifactId>ebean</artifactId>
+      <artifactId>ebean-postgres</artifactId>
       <version>${ebean.version}</version>
     </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>io.ebean</groupId>-->
+<!--      <artifactId>ebean-mysql</artifactId>-->
+<!--      <version>${ebean.version}</version>-->
+<!--    </dependency>-->
+
+<!--    <dependency>-->
+<!--      <groupId>io.ebean</groupId>-->
+<!--      <artifactId>ebean-sqlserver</artifactId>-->
+<!--      <version>${ebean.version}</version>-->
+<!--    </dependency>-->
+
+<!--    <dependency>-->
+<!--      <groupId>io.ebean</groupId>-->
+<!--      <artifactId>ebean</artifactId>-->
+<!--      <version>${ebean.version}</version>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-migration</artifactId>
-      <version>12.16.0</version>
+      <version>13.0.0</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
@@ -112,12 +125,16 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.10.1</version>
         <configuration>
           <release>${java.release}</release>
-<!--          <compilerArgs>-->
-<!--            &#45;&#45;enable-preview-->
-<!--          </compilerArgs>-->
+          <annotationProcessorPaths>
+            <path>
+              <groupId>io.ebean</groupId>
+              <artifactId>querybean-generator</artifactId>
+              <version>${ebean.version}</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
 
@@ -129,7 +146,7 @@
         <configuration>
           <tiles>
 <!--            <tile>org.avaje.tile:java-compile:1.1</tile>-->
-            <tile>io.ebean.tile:enhancement:12.16.0</tile>
+            <tile>io.ebean.tile:enhancement:13.0.0</tile>
           </tiles>
         </configuration>
       </plugin>
@@ -137,7 +154,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M4</version>
+        <version>3.0.0-M5</version>
 <!--        <configuration>-->
 <!--          <argLine>&#45;&#45;enable-preview</argLine>-->
 <!--        </configuration>-->

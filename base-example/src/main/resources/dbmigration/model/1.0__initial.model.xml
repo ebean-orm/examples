@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
+    <changeSet type="apply">
+        <createTable name="address" pkName="pk_address" storageEngine="ENGINE = Log()">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="line1" type="varchar(100)"/>
+            <column name="line2" type="varchar(100)"/>
+            <column name="city" type="varchar(100)"/>
+            <column name="country_code" type="varchar(2)" references="country.code" foreignKeyName="fk_address_country_code" foreignKeyIndex="ix_address_country_code"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="contact" pkName="pk_contact">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="first_name" type="varchar(50)" notnull="true"/>
+            <column name="last_name" type="varchar(50)"/>
+            <column name="email" type="varchar(200)"/>
+            <column name="phone" type="varchar(20)"/>
+            <column name="customer_id" type="bigint" notnull="true" references="customer.id" foreignKeyName="fk_contact_customer_id" foreignKeyIndex="ix_contact_customer_id"/>
+            <column name="comments" type="clob"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="content" identityType="external" pkName="pk_content">
+            <column name="id" type="uuid" primaryKey="true" identity="true"/>
+            <column name="name" type="varchar"/>
+        </createTable>
+        <createTable name="country" identityType="external" pkName="pk_country">
+            <column name="code" type="varchar(2)" primaryKey="true"/>
+            <column name="name" type="varchar(60)"/>
+        </createTable>
+        <createTable name="customer" pkName="pk_customer" comment="Customer table general comment">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="inactive" type="boolean" defaultValue="false" notnull="true"/>
+            <column name="name" type="varchar(100)" notnull="true" unique="uq_customer_name"/>
+            <column name="registered" type="date" comment="The date the customer first registered"/>
+            <column name="uids" type="uuid[]"/>
+            <column name="one" type="varchar"/>
+            <column name="two" type="varchar"/>
+            <column name="three" type="varchar"/>
+            <column name="phone_number" type="varchar"/>
+            <column name="comments" type="clob"/>
+            <column name="billing_address_id" type="bigint" references="address.id" foreignKeyName="fk_customer_billing_address_id" foreignKeyIndex="ix_customer_billing_address_id"/>
+            <column name="shipping_address_id" type="bigint" references="address.id" foreignKeyName="fk_customer_shipping_address_id" foreignKeyIndex="ix_customer_shipping_address_id"/>
+            <column name="last_addr" type="inet"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="dmachine" pkName="pk_dmachine">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="name" type="varchar"/>
+            <column name="version" type="bigint" notnull="true"/>
+        </createTable>
+        <createTable name="d_machine_stats" pkName="pk_d_machine_stats">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="machine_id" type="bigint" references="dmachine.id" foreignKeyName="fk_d_machine_stats_machine_id" foreignKeyIndex="ix_d_machine_stats_machine_id"/>
+            <column name="date" type="date"/>
+            <column name="total_kms" type="bigint" notnull="true"/>
+            <column name="hours" type="bigint" notnull="true"/>
+            <column name="rate" type="decimal"/>
+            <column name="cost" type="decimal"/>
+            <column name="version" type="bigint" notnull="true"/>
+        </createTable>
+        <createTable name="orders" pkName="pk_orders">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="status" type="varchar(1)" notnull="true" checkConstraint="check ( status in ('N','A','S','C','F'))" checkConstraintName="ck_orders_status"/>
+            <column name="order_date" type="date"/>
+            <column name="ship_date" type="date"/>
+            <column name="customer_id" type="bigint" notnull="true" references="customer.id" foreignKeyName="fk_orders_customer_id" foreignKeyIndex="ix_orders_customer_id"/>
+            <column name="shipping_address_id" type="bigint" references="address.id" foreignKeyName="fk_orders_shipping_address_id" foreignKeyIndex="ix_orders_shipping_address_id"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="order_detail" pkName="pk_order_detail">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="order_id" type="bigint" references="orders.id" foreignKeyName="fk_order_detail_order_id" foreignKeyIndex="ix_order_detail_order_id"/>
+            <column name="order_qty" type="integer"/>
+            <column name="ship_qty" type="integer"/>
+            <column name="unit_price" type="double"/>
+            <column name="product_id" type="bigint" references="product.id" foreignKeyName="fk_order_detail_product_id" foreignKeyIndex="ix_order_detail_product_id"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="order_shipment" pkName="pk_order_shipment">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="order_id" type="bigint" notnull="true" references="orders.id" foreignKeyName="fk_order_shipment_order_id" foreignKeyIndex="ix_order_shipment_order_id"/>
+            <column name="shipped_on" type="date"/>
+            <column name="notes" type="varchar"/>
+            <column name="version" type="bigint" notnull="true"/>
+            <column name="when_created" type="timestamp" notnull="true"/>
+            <column name="when_modified" type="timestamp" notnull="true"/>
+        </createTable>
+        <createTable name="product" pkName="pk_product">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="sku" type="varchar(20)"/>
+            <column name="name" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+</migration>

@@ -7,9 +7,9 @@ public class StartPostgresDocker {
 
   public static void main(String[] args) {
 
-    PostgresConfig config = new PostgresConfig("12");
-    config.setDbName("my_app7");
-    config.setUser("my_app7");
+    PostgresConfig config = new PostgresConfig("14");
+    config.setDbName("my_app9");
+    config.setUser("my_app9");
     config.setPassword("test");
 
     System.out.println("url: " + config.jdbcUrl());
