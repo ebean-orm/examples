@@ -1,20 +1,9 @@
-//buildscript{
-//  repositories {
-//    mavenLocal()
-//    dependencies{
-//      classpath 'io.ebean:ebean-gradle-plugin:13.6.4.1'
-//    }
-//  }
-//}
-
 plugins {
   id('idea')
   id('io.ebean') version '13.6.4.1'
   id('org.jetbrains.kotlin.jvm') version '1.7.0'
   id('org.jetbrains.kotlin.kapt') version '1.7.0'
 }
-
-//apply plugin: 'io.ebean'
 
 repositories {
   mavenLocal()
