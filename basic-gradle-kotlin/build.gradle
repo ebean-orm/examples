@@ -1,10 +1,20 @@
+//buildscript{
+//  repositories {
+//    mavenLocal()
+//    dependencies{
+//      classpath 'io.ebean:ebean-gradle-plugin:13.6.4.1'
+//    }
+//  }
+//}
 
 plugins {
   id('idea')
-  id('io.ebean') version '13.6.4'
-  id('org.jetbrains.kotlin.jvm') version '1.5.31'
-  id('org.jetbrains.kotlin.kapt') version '1.5.31'
+  id('io.ebean') version '13.6.4.1'
+  id('org.jetbrains.kotlin.jvm') version '1.7.0'
+  id('org.jetbrains.kotlin.kapt') version '1.7.0'
 }
+
+//apply plugin: 'io.ebean'
 
 repositories {
   mavenLocal()
@@ -13,7 +23,7 @@ repositories {
 
 dependencies {
 
-  implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31'
+  implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0'
   implementation 'org.avaje.composite:logback:1.1'
 
   implementation 'io.ebean:ebean:13.6.4'
