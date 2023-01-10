@@ -1,7 +1,7 @@
 plugins {
   id('idea')
   id('java')
-  id('io.ebean') version '12.16.0'
+  id('io.ebean') version '13.11.0'
 }
 
 repositories {
@@ -9,22 +9,28 @@ repositories {
   mavenCentral()
 }
 
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+
 compileJava {
-  sourceCompatibility = '11'
-  targetCompatibility = '11'
+  options.release = 17
+  options.encoding = 'UTF-8'
 }
 
 dependencies {
 
   implementation 'org.avaje.composite:logback:1.1'
-  implementation 'org.postgresql:postgresql:42.3.3'
-  implementation 'io.ebean:ebean:12.16.0'
+  implementation 'org.postgresql:postgresql:42.5.1'
+  implementation 'io.ebean:ebean:13.11.0'
 
   // apt query bean generation
-  annotationProcessor 'io.ebean:querybean-generator:12.16.0'
+  annotationProcessor 'io.ebean:querybean-generator:13.11.0'
 
   testImplementation 'io.avaje:junit:1.1'
-  testImplementation 'io.ebean:ebean-test:12.16.0'
+  testImplementation 'io.ebean:ebean-test:13.11.0'
 }
 
 test {
@@ -32,7 +38,7 @@ test {
 }
 
 ebean {
-  debugLevel = 0 //0 - 9
+  debugLevel = 1 //0 - 9
 }
 
 test {
