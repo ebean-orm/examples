@@ -11,7 +11,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.release>17</java.release>
-    <ebean.version>13.0.0</ebean.version>
+    <ebean.version>13.11.0</ebean.version>
     <surefire.useModulePath>false</surefire.useModulePath>
 <!--    <ebean-maven-plugin.args>debug=1</ebean-maven-plugin.args>-->
   </properties>
@@ -21,13 +21,13 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.36</version>
+      <version>2.0.5</version>
     </dependency>
 
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.11</version>
+      <version>1.4.5</version>
     </dependency>
 
     <!--
@@ -38,7 +38,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.3.8</version>
+      <version>42.5.1</version>
     </dependency>
 
 <!--    <dependency>-->
@@ -82,7 +82,7 @@
     <dependency>
       <groupId>io.ebean</groupId>
       <artifactId>ebean-migration</artifactId>
-      <version>13.0.0</version>
+      <version>13.6.2</version>
     </dependency>
 
     <!-- java annotation processor to generate query beans -->
@@ -141,12 +141,12 @@
       <plugin>
         <groupId>io.repaint.maven</groupId>
         <artifactId>tiles-maven-plugin</artifactId>
-        <version>2.24</version>
+        <version>2.33</version>
         <extensions>true</extensions>
         <configuration>
           <tiles>
 <!--            <tile>org.avaje.tile:java-compile:1.1</tile>-->
-            <tile>io.ebean.tile:enhancement:13.0.0</tile>
+            <tile>io.ebean.tile:enhancement:13.11.0</tile>
           </tiles>
         </configuration>
       </plugin>
@@ -154,7 +154,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
+        <version>3.0.0-M7</version>
 <!--        <configuration>-->
 <!--          <argLine>&#45;&#45;enable-preview</argLine>-->
 <!--        </configuration>-->

@@ -14,13 +14,13 @@ public class CustomerPersistAdapter extends BeanPersistAdapter {
 
   @Override
   public void postInsert(BeanPersistRequest<?> request) {
-    final Object bean = request.getBean();
+    final Object bean = request.bean();
     System.out.println("postInsert " + bean);
   }
 
   @Override
   public void postUpdate(BeanPersistRequest<?> request) {
-    final Object bean = request.getBean();
-    System.out.println("postUpdate " + bean + " updated:" + request.getUpdatedProperties() + " dirty:" + request.getUpdatedValues());
+    final Object bean = request.bean();
+    System.out.println("postUpdate " + bean + " updated:" + request.updatedProperties() + " dirty:" + request.updatedValues());
   }
 }

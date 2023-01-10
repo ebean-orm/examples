@@ -68,7 +68,7 @@ public class ProductTest {
       assertThat(obtainWithLock(queryById)).isFalse();
 
       try {
-        txn0.getConnection().commit();
+        txn0.connection().commit();
         //txn0.commitAndContinue();
       } catch (SQLException e) {
         e.printStackTrace();

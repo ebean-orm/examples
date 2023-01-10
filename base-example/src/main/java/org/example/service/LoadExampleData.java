@@ -204,7 +204,7 @@ public class LoadExampleData {
       billingAddr.setLine1(billingStreet);
       billingAddr.setLine2("St Lukes");
       billingAddr.setCity("Auckland");
-      billingAddr.setCountry(DB.getReference(Country.class, "NZ"));
+      billingAddr.setCountry(DB.reference(Country.class, "NZ"));
 
       c.setBillingAddress(billingAddr);
     }

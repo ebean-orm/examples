@@ -1,20 +1,19 @@
 package main;
 
-import io.ebean.docker.commands.PostgresConfig;
-import io.ebean.docker.commands.PostgresContainer;
+import io.ebean.test.containers.PostgresContainer;
 
 public class StartPostgresDocker {
 
   public static void main(String[] args) {
 
-    PostgresConfig config = new PostgresConfig("14");
-    config.setDbName("my_app9");
-    config.setUser("my_app9");
-    config.setPassword("test");
+    PostgresContainer container = PostgresContainer.builder("14")
+      .dbName("my_app9")
+      .user("my_app9")
+      .password("test")
+      .build();
 
-    System.out.println("url: " + config.jdbcUrl());
+    System.out.println("url: " + container.jdbcUrl());
 
-    PostgresContainer container = new PostgresContainer(config);
     container.startWithDropCreate();
   }
 }
