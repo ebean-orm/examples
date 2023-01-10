@@ -1,0 +1,2 @@
+entity-field-access: true
+synthetic: false
