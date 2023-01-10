@@ -1,6 +1,6 @@
 plugins {
   id('idea')
-  id('io.ebean') version '13.6.4.1'
+  id('io.ebean') version '13.11.0'
   id('org.jetbrains.kotlin.jvm') version '1.7.0'
   id('org.jetbrains.kotlin.kapt') version '1.7.0'
 }
@@ -15,12 +15,12 @@ dependencies {
   implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.0'
   implementation 'org.avaje.composite:logback:1.1'
 
-  implementation 'io.ebean:ebean:13.6.4'
-  implementation 'org.postgresql:postgresql:42.3.3'
+  implementation 'io.ebean:ebean:13.11.0'
+  implementation 'org.postgresql:postgresql:42.5.1'
 
-  kapt 'io.ebean:kotlin-querybean-generator:13.6.4'
+  kapt 'io.ebean:kotlin-querybean-generator:13.11.0'
 
-  testImplementation 'io.ebean:ebean-test:13.6.4'
+  testImplementation 'io.ebean:ebean-test:13.11.0'
   testImplementation 'io.avaje:junit:1.1'
 }
 
