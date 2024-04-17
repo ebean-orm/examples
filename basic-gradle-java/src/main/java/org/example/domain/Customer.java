@@ -1,10 +1,10 @@
 package org.example.domain;
 
-import org.example.domain.finder.CustomerFinder;
 import io.ebean.annotation.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Lob;
+import org.example.domain.finder.CustomerFinder;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
 import java.time.LocalDate;
 
 @Entity
