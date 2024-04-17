@@ -6,10 +6,19 @@ import io.ebean.annotation.WhenModified;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.Instant;
 
 @MappedSuperclass
+@Getter  @Setter
+@ToString(doNotUseGetters = true, callSuper = false) // avoid getters!
+//@Accessors(fluent = true, chain = true) // instead of @Builder(toBuilder = true)
+@NoArgsConstructor  @AllArgsConstructor
 public abstract class BaseDomain extends Model {
 
 	@Id
@@ -24,35 +33,4 @@ public abstract class BaseDomain extends Model {
 	@WhenModified
 	Instant whenModified;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public long getVersion() {
-		return version;
-	}
-
-	public void setVersion(long version) {
-		this.version = version;
-	}
-
-	public Instant getWhenCreated() {
-		return whenCreated;
-	}
-
-	public void setWhenCreated(Instant whenCreated) {
-		this.whenCreated = whenCreated;
-	}
-
-	public Instant getWhenModified() {
-		return whenModified;
-	}
-
-	public void setWhenModified(Instant whenModified) {
-		this.whenModified = whenModified;
-	}
 }
