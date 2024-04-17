@@ -1,13 +1,23 @@
 package org.example.domain;
 
-import org.example.domain.finder.CustomerFinder;
 import io.ebean.annotation.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Lob;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.example.domain.finder.CustomerFinder;
 
-import javax.persistence.Entity;
-import javax.persistence.Lob;
 import java.time.LocalDate;
 
 @Entity
+// DON'T! @Data, @EqualsAndHashCode  See https://ebean.io/docs/best-practice/
+@Getter  @Setter
+@ToString(doNotUseGetters = true, callSuper = true) // avoid getters!
+@NoArgsConstructor  @AllArgsConstructor
+//@Accessors(fluent = true, chain = true) // instead of @Builder(toBuilder = true)
 public class Customer extends BaseDomain {
 
   public static final CustomerFinder find = new CustomerFinder();
@@ -23,29 +33,4 @@ public class Customer extends BaseDomain {
   public Customer(String name) {
     this.name = name;
   }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public LocalDate getStartDate() {
-    return startDate;
-  }
-
-  public void setStartDate(LocalDate startDate) {
-    this.startDate = startDate;
-  }
-
-  public String getComments() {
-    return comments;
-  }
-
-  public void setComments(String comments) {
-    this.comments = comments;
-  }
-
 }
