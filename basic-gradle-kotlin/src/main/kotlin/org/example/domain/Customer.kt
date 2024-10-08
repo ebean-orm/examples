@@ -3,9 +3,9 @@ package org.example.domain
 import io.ebean.annotation.Length
 import org.example.domain.finder.CustomerFinder
 import java.math.BigDecimal
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.OneToMany
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.OneToMany
 
 @Entity
 open class Customer(name: String) : BaseModel() {

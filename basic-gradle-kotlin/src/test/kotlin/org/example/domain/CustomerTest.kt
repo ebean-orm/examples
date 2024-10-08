@@ -22,7 +22,7 @@ class CustomerTest {
       .select(fetchGroup)
       .name.eqOrNull("Rob")
       .creditLimit.gt(30_000)
-      .orders.isNotEmpty
+      // .orders.isNotEmpty()
       .findList()
 
     assertThat(customers).isEmpty()

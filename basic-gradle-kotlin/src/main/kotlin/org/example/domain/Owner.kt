@@ -1,6 +1,6 @@
 package org.example.domain
 
-import javax.persistence.Entity
+import jakarta.persistence.Entity
 
 @Entity
 class Owner(name:String) : BaseModel() {

@@ -2,7 +2,7 @@ package org.example.domain
 
 import org.example.domain.finder.OrderFinder
 import java.time.OffsetDateTime
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name="orders")

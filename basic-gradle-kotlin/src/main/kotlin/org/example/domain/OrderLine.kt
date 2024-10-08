@@ -1,8 +1,8 @@
 package org.example.domain
 
 import org.example.domain.finder.OrderLineFinder
-import javax.persistence.Entity
-import javax.persistence.ManyToOne
+import jakarta.persistence.Entity
+import jakarta.persistence.ManyToOne
 
 @Entity
 class OrderLine(

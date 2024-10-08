@@ -2,7 +2,7 @@ package org.example.domain
 
 import io.ebean.annotation.Length
 import org.example.domain.finder.ProductFinder
-import javax.persistence.Entity
+import jakarta.persistence.Entity
 
 @Entity
 class Product(
