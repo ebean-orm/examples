@@ -2,10 +2,10 @@ package org.example.domain;
 
 import io.ebean.annotation.StorageEngine;
 import org.example.domain.finder.AddressFinder;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 
 /**
  * Address entity bean.

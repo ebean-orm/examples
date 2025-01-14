@@ -6,6 +6,7 @@ import io.ebean.Query;
 import io.ebean.Transaction;
 import org.example.domain.query.QProduct;
 import org.example.service.LoadExampleData;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +28,15 @@ public class ProductTest {
 
     Product product = Product.byName("Computer");
 
+    Assertions.assertNotNull(product);
+
     List<Product> products = new QProduct()
       .name.istartsWith("c")
       .id.greaterThan(0)
       .sku.icontains("c")
       .findList();
 
-    products.size();
+    Assertions.assertFalse(products.isEmpty());
   }
 
   // Run using Postgres with forUpdateNoWait
@@ -55,7 +58,7 @@ public class ProductTest {
         .forUpdate()
         .findList();
 
-      Product firstProduct = list.get(0);
+      Product firstProduct = list.getFirst();
 
       Query<Product> queryById = new QProduct()
         .id.eq(firstProduct.getId())
@@ -71,7 +74,7 @@ public class ProductTest {
         txn0.connection().commit();
         //txn0.commitAndContinue();
       } catch (SQLException e) {
-        e.printStackTrace();
+        log.error("Catch exception", e);
       }
 
       assertThat(obtainWithLock(queryById)).isTrue();
@@ -81,16 +84,20 @@ public class ProductTest {
   }
 
   private boolean obtainWithLock(Query<Product> queryById) {
+    try (Transaction txn = DB.createTransaction()) {
+      // Apply the transaction and locking to the query
+      Product product = queryById
+        .usingTransaction(txn) // Use the transaction
+        .forUpdate()           // Apply the lock
+        .findOne();            // Fetch the record
 
-    try (Transaction otherTxn1 = DB.getDefault().createTransaction()) {
-
-      Product other = DB.getDefault().extended().findOne(queryById, otherTxn1);
-      other.getName();
-      return true;
+      return product != null;
 
     } catch (AcquireLockException e) {
-      log.info("Failed to obtain lock" + e.getMessage());
+      log.info("Failed to obtain lock {}", e.getMessage());
       return false;
     }
   }
+
+
 }

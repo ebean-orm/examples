@@ -3,10 +3,10 @@ package org.example.domain;
 import org.example.domain.finder.ProductFinder;
 import org.example.domain.query.QProduct;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 
 /**
  * Product entity bean.

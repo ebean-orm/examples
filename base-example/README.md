@@ -1,6 +1,5 @@
-Examples using Java 8
+Examples using Java 21
 =====================
 
-This shows examples of using Java 8 date time types and additionally
-shows where Java 8 closures can be used.
-
+This demonstrates examples of using Java 21's date and time types along with other modern features. <br/>
+Additionally, it highlights where new enhancements, such as pattern matching and updated lambda functionalities, can be utilized effectively.

@@ -30,7 +30,7 @@ public class Main {
       .findList();
     System.out.println("contacts: " + contacts);
 
-    List<Contact> list2 = DB.createQuery(Contact.class, "where firstName like :name")
+    List<Contact> list2 = DB.findNative(Contact.class, "select * from contract where firstName like :name")
       .setParameter("name", "f%")
       .findList();
 

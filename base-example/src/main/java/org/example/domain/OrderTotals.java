@@ -4,9 +4,9 @@ import io.ebean.annotation.Cache;
 import io.ebean.annotation.View;
 import org.example.domain.finder.OrderTotalsFinder;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Cache(enableQueryCache = true)
 @Entity

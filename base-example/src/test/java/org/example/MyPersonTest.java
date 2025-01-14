@@ -1,5 +1,6 @@
 package org.example;
 
+import org.assertj.core.api.Assertions;
 import org.example.query.QMyPerson;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,8 @@ class MyPersonTest {
     MyPerson one = new QMyPerson()
       .id.eq(mp.id)
       .findOne();
+
+    Assertions.assertThat(one).isNotNull();
 
     String city = one.address.city;
     assertThat(city).isEqualTo("Auckland");

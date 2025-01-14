@@ -26,7 +26,7 @@ class CustomerTest extends ExampleBaseTestCase {
     // reference bean only has Id populated
     Customer refBean = Customer.find.ref(jack.getId());
 
-    // only Id property is loaded
+    // only id property is loaded
     BeanState beanState = DB.beanState(refBean);
     assertThat(beanState.loadedProps()).containsExactly("id");
 
@@ -56,7 +56,7 @@ class CustomerTest extends ExampleBaseTestCase {
     // invoke lazy loading
     String name = found.getName();
     assertThat(name).isEqualTo("Jim");
-    assertThat(found.getPhoneNumber().getValue()).isEqualTo("234");
+    assertThat(found.getPhoneNumber().value()).isEqualTo("234");
     assertThat(beanState.loadedProps()).contains("id", "name", "inactive");
   }
 }

@@ -4,10 +4,10 @@ import io.ebean.Model;
 import io.ebean.annotation.Cache;
 import org.example.domain.finder.CountryFinder;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 
 /**
  * Country entity bean.

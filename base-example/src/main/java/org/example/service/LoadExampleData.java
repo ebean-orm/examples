@@ -21,7 +21,7 @@ public class LoadExampleData {
 
   private static final Logger log = LoggerFactory.getLogger(LoadExampleData.class);
 
-  private static LoadExampleData data = new LoadExampleData();
+  private static final LoadExampleData data = new LoadExampleData();
 
   private boolean runOnce;
 
@@ -49,7 +49,6 @@ public class LoadExampleData {
         insertTestCustAndOrders();
         transaction.commit();
       } catch (Throwable e) {
-        e.printStackTrace();
         log.error("Error seeding", e);
       }
     }
@@ -89,7 +88,7 @@ public class LoadExampleData {
     });
   }
 
-  private List<Product> products = new ArrayList<>();
+  private final List<Product> products = new ArrayList<>();
 
   private void insertProducts() {
 
@@ -117,25 +116,9 @@ public class LoadExampleData {
     );
   }
 
-  public static Customer createCustAndOrder(String custName) {
-
-    LoadExampleData me = new LoadExampleData();
-    Customer cust1 = insertCustomer(custName);
-    me.createOrder1(cust1);
-    return cust1;
-  }
-
-  public static Order createOrderCustAndOrder(String custName) {
-
-    LoadExampleData me = new LoadExampleData();
-    Customer cust1 = insertCustomer(custName);
-    Order o = me.createOrder1(cust1);
-    return o;
-  }
-
   private static int contactEmailNum = 1;
 
-  private Customer insertCustomerFiona() {
+  private void insertCustomerFiona() {
 
     Customer c = createCustomer("Fiona", "12 Apple St", "West Coast Rd", 1);
 
@@ -143,7 +126,6 @@ public class LoadExampleData {
     c.addContact(createContact("Tracy", "Red"));
 
     DB.save(c);
-    return c;
   }
 
   public static Contact createContact(String firstName, String lastName) {
@@ -155,12 +137,11 @@ public class LoadExampleData {
     return contact;
   }
 
-  private Customer insertCustomerNoContacts(String name) {
+  private void insertCustomerNoContacts(String name) {
 
     Customer c = createCustomer(name, "15 Kumera Way", "Bos town", 1);
 
     DB.save(c);
-    return c;
   }
 
   private Customer insertCustomerNoAddress() {
@@ -235,7 +216,7 @@ public class LoadExampleData {
 
   private void createOrder2(Customer customer) {
 
-    Product product1 = Product.find.ref(products.get(0).getId());
+    Product product1 = Product.find.ref(products.getFirst().getId());
 
     Order order = new Order(customer);
     order.setStatus(Status.SHIPPED);

@@ -1,4 +1,4 @@
-module example.java8 {
+module example.java21 {
 
   requires io.ebean.postgres;
 

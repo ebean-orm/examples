@@ -3,23 +3,13 @@
 #load:
 #  properties: ${user.home}/config/my-application.properties
 ebean:
-  dbSchema: ${db.username:my_app9}
-  migration.run: true
+  dbSchema: ${db.username:sandbox_db}
+  migration:
+    run: true
+    autoCreate: true
 
 datasource:
   db:
-    username: ${db.username:my_app9}
-    password: ${db.password:test}
-    url: ${db.url:jdbc:postgresql://localhost:6432/my_app9}
-
-
-#ebean:
-#  docstore:
-#    url: http://127.0.0.1:9200
-#    active: true
-#  migration:
-#   run: true
-
-
-
-
+    username: ${db.username:postgres}
+    password: ${db.password:postgres}
+    url: ${db.url:jdbc:postgresql://localhost:6432/sandbox_db}
