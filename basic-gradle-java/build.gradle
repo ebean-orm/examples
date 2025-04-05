@@ -1,7 +1,9 @@
 plugins {
   id('idea')
   id('java')
-  id('io.ebean') version '13.11.0'
+  id("io.freefair.lombok") version 'latest.release'
+  id("io.ebean") version "latest.release"
+  id("net.ltgt.errorprone") version "latest.release"
 }
 
 repositories {
@@ -15,22 +17,49 @@ java {
   }
 }
 
-compileJava {
-  options.release = 17
+tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8'
+  options.compilerArgs.addAll(['-Xlint:all,-serial', '-parameters'])
+  options.release.set(17) // javac --release 7→8..22+
+  options.deprecation = true
+  options.debug = true
+
+  options.errorprone {
+    enabled = true
+    disableWarningsInGeneratedCode = true
+    excludedPaths = ".*/(generated|test).*/.*"
+    disable("UnusedVariable")
+    disable("MissingSummary")
+    errorproneArgs = ["-XepExcludedPaths:.*/test/.*"]
+  }
 }
 
 dependencies {
+  errorprone("com.google.errorprone:error_prone_core:latest.release")
+  implementation "com.google.code.findbugs:jsr305:latest.release"	// https://javadoc.io/doc/com.google.code.findbugs/jsr305/latest/index.html
 
-  implementation 'org.avaje.composite:logback:1.1'
-  implementation 'org.postgresql:postgresql:42.5.1'
-  implementation 'io.ebean:ebean:13.11.0'
+  implementation "io.ebean:ebean:latest.release"
 
   // apt query bean generation
-  annotationProcessor 'io.ebean:querybean-generator:13.11.0'
+  annotationProcessor 'io.ebean:querybean-generator:latest.release'
 
-  testImplementation 'io.avaje:junit:1.1'
-  testImplementation 'io.ebean:ebean-test:13.11.0'
+
+  testImplementation 'org.junit.jupiter:junit-jupiter:latest.release'
+  testImplementation 'io.ebean:ebean-test:latest.release'
+
+  testImplementation("ch.qos.logback:logback-classic:1.2.+")
+
+  testImplementation 'org.postgresql:postgresql:latest.release'
+}
+configurations.configureEach { // .implementation ? https://tomgregory.com/how-to-exclude-gradle-dependencies/
+  exclude group: 'io.ebean', module: 'ebean-joda-time'
+
+  exclude group: "commons-logging", module: "commons-logging" // spring?
+  exclude group: "org.apache.logging.log4j", module: "log4j-api"
+  exclude group: "org.apache.logging.log4j", module: "log4j-to-slf4j"
+  exclude group: "org.jboss.slf4j", module:  "slf4j-jboss-logmanager"
+
+  exclude group: "com.mchange", module: "c3p0"
 }
 
 test {
@@ -38,8 +67,11 @@ test {
 }
 
 ebean {
-  debugLevel = 1 //0 - 9
+  debugLevel = 9 //0 - 9
+  queryBeans = true
 }
+
+lombok { version = "latest.release" }
 
 test {
   testLogging.showStandardStreams = true

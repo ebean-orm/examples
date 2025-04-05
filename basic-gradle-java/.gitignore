@@ -1,6 +1,7 @@
 out/
 build/
 generated/
+generated_tests/
 .gradle/
 .idea/
 *.iml
